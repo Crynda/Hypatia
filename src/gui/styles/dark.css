@@ -1,0 +1,267 @@
+/* 
+styleClass="titulo-seccion"
+styleClass="borde-pannel"
+styleClass="borde-pannel2"
+styleClass="resultado"
+*/
+
+/* =======================================================
+   FONDO GENERAL
+   ======================================================= */
+
+.root {
+    -fx-background-color: #2b2b2b;
+}
+
+/* =======================================================
+   CLASES PERSONALIZADAS
+   ======================================================= */
+
+.borde-pannel {
+    -fx-border-color: #555555;
+    -fx-border-radius: 3;
+}
+
+.borde-pannel2 {
+    -fx-border-color: #444444;
+    -fx-border-radius: 3;
+}
+
+.resultado {
+    -fx-text-fill: #bdbdbd;
+    -fx-opacity: 0.6;
+}
+
+.titulo-seccion {
+    -fx-text-fill: #d0d0d0;
+}
+
+/* =======================================================
+   LABELS
+   ======================================================= */
+
+.label {
+    -fx-text-fill: #e0e0e0;
+}
+
+/* =======================================================
+   BOTONES
+   ======================================================= */
+
+.button {
+    -fx-background-color: #404040;
+    -fx-border-color: #555555;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #4d4d4d;
+}
+
+.button:pressed {
+    -fx-background-color: #5a5a5a;
+}
+
+/* =======================================================
+   TEXTFIELDS
+   ======================================================= */
+
+.text-field {
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #555555;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+}
+
+.text-field:focused {
+    -fx-border-color: #6fa8ff;
+}
+
+.text-field:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: #323232;
+    -fx-text-fill: #bdbdbd;
+}
+
+/* =======================================================
+   TABLAS
+   ======================================================= */
+
+.table-view {
+    -fx-background-color: #323232;
+    -fx-border-color: #444444;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #404040;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-row-cell {
+    -fx-background-color: #323232;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4a6ea8;
+}
+
+/* =======================================================
+   TABPANE
+   ======================================================= */
+
+.tab-pane {
+    -fx-background-color: #2b2b2b;
+}
+
+.tab {
+    -fx-background-color: #404040;
+}
+
+.tab:selected {
+    -fx-background-color: #555555;
+}
+
+.tab-label {
+    -fx-text-fill: white;
+}
+
+/* =======================================================
+   TITLEDPANE
+   ======================================================= */
+
+.titled-pane > .title {
+    -fx-background-color: #404040;
+}
+
+.titled-pane > .title > .text {
+    -fx-fill: white;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: #2b2b2b;
+}
+
+/* =======================================================
+   ACCORDION
+   ======================================================= */
+
+.accordion {
+    -fx-background-color: #2b2b2b;
+}
+
+/* =======================================================
+   MENUBAR
+   ======================================================= */
+
+.menu-bar {
+    -fx-background-color: #404040;
+}
+
+.menu-bar .label {
+    -fx-text-fill: white;
+}
+
+.menu:hover {
+    -fx-background-color: #555555;
+}
+
+.context-menu {
+    -fx-background-color: #404040;
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
+/* =======================================================
+   SCROLLPANE
+   ======================================================= */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #2b2b2b;
+}
+
+/* =======================================================
+   SPLITPANE
+   ======================================================= */
+
+.split-pane {
+    -fx-background-color: #2b2b2b;
+}
+
+/* =======================================================
+   GRÁFICAS
+   ======================================================= */
+
+.chart {
+    -fx-background-color: #2b2b2b;
+}
+
+.chart-plot-background {
+    -fx-background-color: #323232;
+}
+
+.axis {
+    -fx-tick-label-fill: #d0d0d0;
+}
+
+.axis-label {
+    -fx-text-fill: #d0d0d0;
+}
+
+.chart-title {
+    -fx-text-fill: white;
+}
+
+/* Fondo de la leyenda */
+.chart-legend {
+    -fx-background-color: #404040;
+    -fx-border-color: #555555;
+	-fx-background-radius: 6;
+	-fx-border-radius: 6;
+}
+
+/* Texto de la leyenda */
+.chart-legend-item {
+    -fx-text-fill: white;
+}
+
+/* =======================================================
+   Editor de celdas de tablas
+   ======================================================= */
+
+.table-cell {
+    -fx-text-fill: white;
+}
+
+/* =======================================================
+   Hbox
+   ======================================================= */
+
+.hbox {
+    -fx-background-color: #404040;
+}
+
+/* =======================================================
+   TOOLTIPS
+   ======================================================= */
+
+.tooltip {
+    -fx-background-color: #505050;
+    -fx-text-fill: white;
+}

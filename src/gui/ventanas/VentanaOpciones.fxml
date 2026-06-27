@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controladores.ConfigController">
+   <children>
+
+<Label layoutX="99.0" layoutY="99.0" text="Limite de decimales">
+    <font>
+        <Font size="15.0" />
+    </font>
+</Label>
+
+<Spinner fx:id="limit" layoutX="288.0" layoutY="97.0" prefHeight="25.0" prefWidth="70.0" style="-fx-font-size: 15px;" />      
+
+      <Label layoutX="213.0" layoutY="37.0" text="Configuracion">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="99.0" layoutY="143.0" text="Tono">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      
+      <Pane fx:id="switchPane" layoutX="283.0" layoutY="136.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #9b9b9b; -fx-background-radius: 40;">
+
+            <children>
+
+                <Circle fx:id="switchCircle" centerX="18" centerY="18" fill="WHITE" radius="14" />
+
+                <Label layoutX="10.0" layoutY="6.0" text="☀">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+
+                <Label layoutX="55.0" layoutY="7.0" text="🌙">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+
+            </children>
+
+        </Pane>
+      <Label layoutX="99.0" layoutY="189.0" text="Informacion emergente">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Pane fx:id="switchPaneTT" layoutX="283.0" layoutY="182.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+         <children>
+            <Circle fx:id="switchTooltips" centerX="18" centerY="18" fill="WHITE" radius="14" />
+         </children>
+      </Pane>
+      <Label layoutX="261.0" layoutY="190.0" text="ⓘ" textFill="#a39d9d">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Proporciona descripciones y sugerencias útiles al colocar el cursor sobre los distintos elementos de la interfaz." />
+         </tooltip>
+      </Label>
+      <Label layoutX="99.0" layoutY="236.0" text="Animaciones">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Pane fx:id="switchPaneTT1" layoutX="284.0" layoutY="229.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+         <children>
+            <Circle fx:id="switchTooltips1" centerX="18" centerY="18" fill="WHITE" radius="14" />
+         </children>
+      </Pane>
+      <Button fx:id="Aplicar1" layoutX="512.0" layoutY="354.0" mnemonicParsing="false" onAction="#aplicarLimite" text="Guardar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="Aplicar11" layoutX="387.0" layoutY="354.0" mnemonicParsing="false" onAction="#aplicarLimite" text="Guardar y salir">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      
+   </children>
+</AnchorPane>

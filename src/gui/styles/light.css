@@ -1,0 +1,180 @@
+/* 
+styleClass="titulo-seccion"
+styleClass="borde-pannel"
+styleClass="borde-pannel2"
+styleClass="resultado"
+
+*/
+
+/* Fondo general */
+.root {
+    -fx-background-color: #f5f5f5;
+}
+
+/* =======================================================
+   CLASES PERSONALIZADAS
+   ======================================================= */
+
+
+.borde-pannel {
+    -fx-border-color: #666666;
+    -fx-border-radius: 3;
+}
+
+.borde-pannel2 {
+    -fx-border-color: #C8C8C8;
+    -fx-border-radius: 3;
+}
+
+.resultado {
+    -fx-text-fill: #666666;
+    -fx-opacity: 0.7;
+}
+.titulo-seccion {
+    -fx-text-fill: #9e9e9e;
+	
+}
+
+/* =======================================================
+   LABELS
+   ======================================================= */
+
+.label {
+    -fx-text-fill: #333333;
+}
+
+/* =======================================================
+   BOTONES
+   ======================================================= */
+
+.button {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #c8c8c8;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.button:hover {
+    -fx-background-color: #eaeaea;
+}
+
+.button:pressed {
+    -fx-background-color: #dcdcdc;
+}
+
+/* =======================================================
+   TEXTFIELDS
+   ======================================================= */
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.text-field:focused {
+    -fx-border-color: #4a90e2;
+}
+
+/* =======================================================
+   TABLAS
+   ======================================================= */
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #eeeeee;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #d8e8ff;
+}
+
+/* =======================================================
+   TABPANE
+   ======================================================= */
+
+.tab-pane {
+    -fx-background-color: white;
+}
+
+.tab {
+    -fx-background-color: #eeeeee;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+}
+
+/* =======================================================
+   TITLEDPANE
+   ======================================================= */
+
+.titled-pane > .title {
+    -fx-background-color: #eeeeee;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: white;
+}
+
+/* =======================================================
+   ACCORDION
+   ======================================================= */
+
+.accordion {
+    -fx-background-color: white;
+}
+
+/* =======================================================
+   MENUBAR
+   ======================================================= */
+
+.menu-bar {
+    -fx-background-color: #eeeeee;
+}
+
+.menu:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* =======================================================
+   SCROLLPANE
+   ======================================================= */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: white;
+}
+
+/* =======================================================
+   SPLITPANE
+   ======================================================= */
+
+.split-pane {
+    -fx-background-color: #f5f5f5;
+}
+
+/* =======================================================
+   TOOLTIPS
+   ======================================================= */
+
+.tooltip {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+}
