@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controladores.ConfigController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controladores.ConfigController">
    <children>
 
 <Label layoutX="99.0" layoutY="99.0" text="Limite de decimales">
@@ -78,12 +78,12 @@
             <Circle fx:id="switchTooltips1" centerX="18" centerY="18" fill="WHITE" radius="14" />
          </children>
       </Pane>
-      <Button fx:id="Aplicar1" layoutX="512.0" layoutY="354.0" mnemonicParsing="false" onAction="#aplicarLimite" text="Guardar">
+      <Button fx:id="Aplicar" layoutX="512.0" layoutY="354.0" mnemonicParsing="false" onAction="#aplicarConfiguracion" text="Guardar">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="Aplicar11" layoutX="387.0" layoutY="354.0" mnemonicParsing="false" onAction="#aplicarLimite" text="Guardar y salir">
+      <Button fx:id="SQ" layoutX="387.0" layoutY="354.0" mnemonicParsing="false" onAction="#guardaryCerrar" text="Guardar y salir">
          <font>
             <Font size="15.0" />
          </font>

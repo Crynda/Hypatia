@@ -4,9 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-
+import javafx.stage.Stage;
 import gui.config.Configuracion;
 import gui.config.GestorConfiguracion;
 import gui.config.GestorTemas;
@@ -14,6 +15,9 @@ import gui.util.SwitchToggle;
 
 public class ConfigController {
 
+	@FXML
+	private AnchorPane root;
+	
     @FXML
     private Pane switchPane;
 
@@ -30,8 +34,6 @@ public class ConfigController {
     private Spinner<Integer> limit;
 
     @FXML
-    private Button Aplicar;
-
     private Configuracion config;
 
     private TableController tableController;
@@ -92,7 +94,7 @@ public class ConfigController {
     // =========================
 
     @FXML
-    private void aplicarLimite() {
+    private void aplicarConfiguracion() {
 
         int valor = limit.getValue();
 
@@ -104,7 +106,24 @@ public class ConfigController {
             tableController.setLimiteDecimales(valor);
         }
 
-        System.out.println("Decimales: " + valor);
+    }
+    
+    @FXML
+    private void guardaryCerrar() {
+
+        int valor = limit.getValue();
+
+        config.setDecimales(valor);
+
+        GestorConfiguracion.guardar(config);
+
+        if (tableController != null) {
+            tableController.setLimiteDecimales(valor);
+        }
+        
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.close();
+
     }
 
     // =========================
