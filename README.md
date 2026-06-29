@@ -27,12 +27,13 @@ problemas estadísticos sin necesidad de contar con conocimientos avanzados en l
 
 Desarrollo activo.
 
-## Desarrollo
+## Documentación
 
-Las instrucciones para configurar el entorno de desarrollo se encuentran en:
+Toda la documentación técnica del proyecto se encuentra organizada en la carpeta [`docs/`](./docs).
 
-- docs/SETUP.md
+- 📄 [Guía de instalación y solucion de errores comunes con JavaFX](./docs/SETUP.md)
 
+  
 ## Licencia
 
 Pendiente de definir.
