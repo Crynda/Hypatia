@@ -7,7 +7,7 @@ comunidad estudiantil, docentes y cualquier persona que necesite realizar cálcu
 Su objetivo es ofrecer una experiencia sencilla, intuitiva y accesible, permitiendo comprender y resolver 
 problemas estadísticos sin necesidad de contar con conocimientos avanzados en la materia.
 
-<img width="1254" height="630" alt="image" src="https://github.com/user-attachments/assets/ac6ef7a1-534a-4fb0-ab5b-00e39d63704a" />
+<img width="1254" height="595" alt="image" src="https://github.com/user-attachments/assets/894a8afc-512a-4f96-8c8a-037f27dc23b3" />
 
 
 ## Características
@@ -26,6 +26,12 @@ problemas estadísticos sin necesidad de contar con conocimientos avanzados en l
 ## Estado
 
 Desarrollo activo.
+
+## Desarrollo
+
+Las instrucciones para configurar el entorno de desarrollo se encuentran en:
+
+- docs/SETUP.md
 
 ## Licencia
 
