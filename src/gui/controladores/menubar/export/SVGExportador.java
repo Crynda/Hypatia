@@ -51,10 +51,10 @@ public class SVGExportador {
         svg.append("<svg viewBox='0 0 ").append(W).append(" ").append(H)
            .append("' xmlns='http://www.w3.org/2000/svg'>");
 
-        // Fondo (igual al TS)
+        // Fondo 
         svg.append("<rect width='100%' height='100%' fill='#12121f'/>");
 
-        // GRID (igual estilo TS)
+        // GRID 
         int grid = 5;
 
         for (int i = 0; i <= grid; i++) {
