@@ -7,31 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controladores.ConfigController">
    <children>
 
-<Label layoutX="99.0" layoutY="99.0" text="Limite de decimales">
+<Label layoutX="142.0" layoutY="110.0" text="Limite de decimales">
     <font>
         <Font size="15.0" />
     </font>
 </Label>
 
-<Spinner fx:id="limit" layoutX="288.0" layoutY="97.0" prefHeight="25.0" prefWidth="70.0" style="-fx-font-size: 15px;" />      
+<Spinner fx:id="limit" layoutX="331.0" layoutY="108.0" prefHeight="25.0" prefWidth="70.0" style="-fx-font-size: 15px;" />      
 
-      <Label layoutX="213.0" layoutY="37.0" text="Configuracion">
+      <Label layoutX="198.0" layoutY="47.0" text="Configuracion">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label layoutX="99.0" layoutY="143.0" text="Tono">
+      <Label layoutX="142.0" layoutY="154.0" text="Tono">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       
-      <Pane fx:id="switchPane" layoutX="283.0" layoutY="136.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #9b9b9b; -fx-background-radius: 40;">
+      <Pane fx:id="switchPane" layoutX="326.0" layoutY="147.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #9b9b9b; -fx-background-radius: 40;">
 
             <children>
 
@@ -50,17 +51,17 @@
             </children>
 
         </Pane>
-      <Label layoutX="99.0" layoutY="189.0" text="Informacion emergente">
+      <Label layoutX="142.0" layoutY="200.0" text="Informacion emergente">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Pane fx:id="switchPaneTT" layoutX="283.0" layoutY="182.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+      <Pane fx:id="switchPaneTT" layoutX="326.0" layoutY="193.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
          <children>
             <Circle fx:id="switchTooltips" centerX="18" centerY="18" fill="WHITE" radius="14" />
          </children>
       </Pane>
-      <Label layoutX="261.0" layoutY="190.0" text="ⓘ" textFill="#a39d9d">
+      <Label layoutX="304.0" layoutY="201.0" text="ⓘ" textFill="#a39d9d">
          <font>
             <Font size="15.0" />
          </font>
@@ -68,12 +69,12 @@
             <Tooltip text="Proporciona descripciones y sugerencias útiles al colocar el cursor sobre los distintos elementos de la interfaz." />
          </tooltip>
       </Label>
-      <Label layoutX="99.0" layoutY="236.0" text="Animaciones">
+      <Label layoutX="142.0" layoutY="247.0" text="Animaciones">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Pane fx:id="switchPaneTT1" layoutX="284.0" layoutY="229.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+      <Pane fx:id="switchPaneTT1" layoutX="327.0" layoutY="240.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
          <children>
             <Circle fx:id="switchTooltips1" centerX="18" centerY="18" fill="WHITE" radius="14" />
          </children>
@@ -88,6 +89,16 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Pane fx:id="pnlNotificacion" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #bfdff1;" visible="false">
+         <children>
+            <Rectangle fx:id="rectTiempo" fill="DODGERBLUE" height="4.0" layoutY="36.0" stroke="BLACK" strokeLineCap="BUTT" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+            <Label fx:id="lblMensaje" layoutX="14.0" layoutY="9.0" text="Cambios guardados correctamente" textFill="#003eff">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       
    </children>
 </AnchorPane>

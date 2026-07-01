@@ -39,7 +39,14 @@
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" text="Guardar" />
 						<MenuItem mnemonicParsing="false" text="Guardar como..." />
-						<MenuItem mnemonicParsing="false" text="Exportar" />
+                  <Menu mnemonicParsing="false" text="Exportar...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="PDF" />
+                        <MenuItem mnemonicParsing="false" text="Excel (XLSX)" />
+                        <MenuItem mnemonicParsing="false" text="JSON" />
+                        <MenuItem mnemonicParsing="false" text="HTML" />
+                    </items>
+                  </Menu>
 						<MenuItem mnemonicParsing="false" text="Revertir" />
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" text="Preferencias" />
