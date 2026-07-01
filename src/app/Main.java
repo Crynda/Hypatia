@@ -1,8 +1,15 @@
 package app;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import estadistica.modelos.Muestra;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.*;
+import gui.controladores.menubar.export.HTMLExportController;
+//Prueba de exportaciones
+import gui.controladores.menubar.export.JSONExportController;
 
 public class Main {
 
@@ -13,10 +20,11 @@ public class Main {
 	 * Estadistica descriptiva: mediana, rango, maximo, minimo
 	 * Distribucion normal: calcular Z, densidad
 	 * Muestra: tamanio, promedio, varianza
+	 * @throws IOException 
 	 * 
 	 */	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 	
 		double[] datos = {10, 20, 30, 40, 50};
 
@@ -56,15 +64,24 @@ public class Main {
                 + Math.sqrt(muestra.varianza()));
 
         
-        double[] x = {10, 2, 14, 0, 6, 8, 3, 12, 1, 15, 5, 11, 7, 4, 16};
-        double[] y = {3.2, 7.5, 2, 8.5, 4.8, 4, 6.8, 2.5, 8, 1.8, 5.5, 3, 4.5, 6, 1.5};
-        //double[] x = {1, 2, 3, 4, 5};
+        //double[] x = {10, 2, 14, 0, 6, 8, 3, 12, 1, 15, 5, 11, 7, 4, 16};
+        //double[] y = {3.2, 7.5, 2, 8.5, 4.8, 4, 6.8, 2.5, 8, 1.8, 5.5, 3, 4.5, 6, 1.5};
+        double[] x = {1, 2, 3, 4, 5};
         //double[] y = {2, 5, 4, 8, 7};
+        double[] y = {2, 4, 5, 4, 5};
         
         RegresionLineal regresion = new RegresionLineal(x, y);
         regresion.calcular();
         
-        
+
+        System.out.println("\n=== EXPORTANDO HTML ===");
+
+        String html = HTMLExportController.exportarHTML(x, y, regresion, 2);
+
+        File file = new File("reporte.html");
+        Files.writeString(file.toPath(), html);
+
+       
 		
 	}
 

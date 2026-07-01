@@ -47,6 +47,12 @@
                         <MenuItem mnemonicParsing="false" text="HTML" />
                     </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="Importar...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Excel (XLSX)" />
+                        <MenuItem mnemonicParsing="false" text="JSON" />
+                    </items>
+                  </Menu>
 						<MenuItem mnemonicParsing="false" text="Revertir" />
 						<SeparatorMenuItem mnemonicParsing="false" />
 						<MenuItem mnemonicParsing="false" text="Preferencias" />
