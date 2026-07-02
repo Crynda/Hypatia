@@ -7,9 +7,8 @@ import java.nio.file.Files;
 import estadistica.modelos.Muestra;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.*;
-import gui.controladores.menubar.export.HTMLExportController;
-//Prueba de exportaciones
-import gui.controladores.menubar.export.JSONExportController;
+import gui.util.export.HTMLExport;
+import gui.util.export.JSONExport;
 
 public class Main {
 
@@ -76,7 +75,7 @@ public class Main {
 
         System.out.println("\n=== EXPORTANDO HTML ===");
 
-        String html = HTMLExportController.exportarHTML(x, y, regresion, 2);
+        String html = HTMLExport.exportarHTML(x, y, regresion, 2);
 
         File file = new File("reporte.html");
         Files.writeString(file.toPath(), html);

@@ -1,4 +1,4 @@
-package gui.controladores.menubar.export;
+package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class JSONExportController {
+public class JSONExport {
 
     public static void exportar(
             double[] x,

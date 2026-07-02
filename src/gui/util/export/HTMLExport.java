@@ -1,11 +1,11 @@
-package gui.controladores.menubar.export;
+package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import estadistica.util.Formateador;
 
-public class HTMLExportController {
+public class HTMLExport {
 
     public static String exportarHTML(
             double[] x,
@@ -19,7 +19,7 @@ public class HTMLExportController {
         String fecha = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 
-        String chartSVG = SVGExportador.generarSVG(x, y, resultado);
+        String chartSVG = SVGExport.generarSVG(x, y, resultado);
 
         StringBuilder html = new StringBuilder();
 

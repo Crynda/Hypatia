@@ -1,4 +1,4 @@
-package gui.controladores.menubar.export;
+package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 
@@ -10,7 +10,7 @@ public class ExportController {
             RegresionLineal regresion,
             int decimales) {
 
-        PDFExportController.exportar(x, y, regresion, decimales);
+        PDFExport.exportar(x, y, regresion, decimales);
     }
 
     public static void exportarJSON(
@@ -19,7 +19,7 @@ public class ExportController {
             RegresionLineal regresion,
             int decimales) {
 
-        JSONExportController.exportar(x, y, regresion, decimales);
+        JSONExport.exportar(x, y, regresion, decimales);
     }
 
     public static void exportarCSV(
@@ -28,7 +28,7 @@ public class ExportController {
             RegresionLineal regresion,
             int decimales) {
 
-        CSVExportController.exportar(x, y, regresion, decimales);
+        CSVExport.exportar(x, y, regresion, decimales);
     }
 
     public static void exportarExcel(
@@ -37,7 +37,7 @@ public class ExportController {
             RegresionLineal regresion,
             int decimales) {
 
-        ExcelExportController.exportar(x, y, regresion, decimales);
+        ExcelExport.exportar(x, y, regresion, decimales);
     }
     
     public static void exportarHTML(
@@ -46,7 +46,7 @@ public class ExportController {
             RegresionLineal regresion,
             int decimales) {
 
-    	HTMLExportController.exportarHTML(x, y, regresion, decimales);
+    	HTMLExport.exportarHTML(x, y, regresion, decimales);
     }
 
 }

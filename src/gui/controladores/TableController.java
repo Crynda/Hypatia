@@ -1,6 +1,8 @@
 package gui.controladores;
 
 import java.text.DecimalFormat;
+
+import gui.actions.menubar.MenuActions;
 import gui.componentes.CeldaEditableTab;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.Validaciones;
@@ -594,9 +596,16 @@ public class TableController {
 	    return texto;
 	}
 	
-	public void setLimiteDecimales(int limite) {
+	public void setLimiteDecimales(int limite) { //Reasignar clase
 	    this.limiteDecimales = limite;
 	    actualizarFormato();
+	}
+	
+	//MenuBar
+	
+	@FXML
+	private void abrirRepositorio() {
+	    MenuActions.abrirRepositorio();
 	}
 	
 }

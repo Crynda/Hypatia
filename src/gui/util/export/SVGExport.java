@@ -1,8 +1,8 @@
-package gui.controladores.menubar.export;
+package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 
-public class SVGExportador {
+public class SVGExport {
 
     public static String generarSVG(double[] x, double[] y, RegresionLineal r) {
 
