@@ -2,40 +2,34 @@ package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class JSONExport {
 
-    public static void exportar(
-            double[] x,
-            double[] y,
-            RegresionLineal r,
-            int decimales
-    ) {
+	public static void exportar(
+	        File archivo,
+	        double[] x,
+	        double[] y,
+	        RegresionLineal regresion,
+	        int decimales) {
 
-        try {
+	    try (FileWriter writer = new FileWriter(archivo)) {
 
-            String json = construirJSON(x, y, r, decimales);
+	        String json = construirJSON(x, y, regresion, decimales);
 
-            String nombre = "hypatia-regresion-" + timestamp() + ".json";
+	        writer.write(json);
 
-            FileWriter writer = new FileWriter(nombre);
-            writer.write(json);
-            writer.close();
+	        System.out.println("JSON exportado correctamente: " + archivo.getAbsolutePath());
 
-            System.out.println("JSON exportado correctamente: " + nombre);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // =========================
-    // CONSTRUCCIÓN DEL JSON
-    // =========================
+    
 
     private static String construirJSON(
             double[] x,
@@ -120,9 +114,4 @@ public class JSONExport {
         return sb.toString();
     }
 
-    private static String timestamp() {
-        return DateTimeFormatter
-                .ofPattern("yyyy-MM-dd_HH-mm-ss")
-                .format(LocalDateTime.now());
-    }
 }
