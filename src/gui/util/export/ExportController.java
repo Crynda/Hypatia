@@ -1,6 +1,12 @@
 package gui.util.export;
 
+import java.io.File;
+
 import estadistica.regresion.RegresionLineal;
+import gui.status.EstadoSesion;
+import gui.status.GestorSesion;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 public class ExportController {
 
@@ -13,13 +19,25 @@ public class ExportController {
         PDFExport.exportar(x, y, regresion, decimales);
     }
 
-    public static void exportarJSON(
-            double[] x,
-            double[] y,
-            RegresionLineal regresion,
-            int decimales) {
+    public static void exportarJSON(Window owner, int decimales) {
 
-        JSONExport.exportar(x, y, regresion, decimales);
+        EstadoSesion estado = GestorSesion.getEstado();
+
+        FileChooser chooser = ExportUtil.crearFileChooser("Guardar JSON", "hypatia-regresion", "JSON (*.json)", "json");
+
+        File archivo = chooser.showSaveDialog(owner);
+
+        if (archivo == null) {
+            return;
+        }
+
+        archivo = ExportUtil.asegurarExtension(archivo, "json");
+
+        if (!ExportUtil.confirmarSobrescritura(archivo)) {
+            return;
+        }
+
+        JSONExport.exportar(archivo, estado.getX(), estado.getY(), estado.getRegresion(), decimales);
     }
 
     public static void exportarCSV(
