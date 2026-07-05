@@ -8,12 +8,16 @@ import estadistica.regresion.RegresionLineal;
 import estadistica.util.Validaciones;
 import gui.componentes.Dato;
 import gui.config.GestorTemas;
+import gui.status.EstadoSesion;
+import gui.status.GestorSesion;
 import gui.util.ConversorTabla;
+import gui.util.export.ExportController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,6 +28,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -38,7 +43,6 @@ public class TableController {
 	
 	//Formatos
 	private int limiteDecimales = 2; // default
-	//private DecimalFormat formato = new DecimalFormat("0.00");
 	
 	//Valores 
 	private double[] x;
@@ -135,15 +139,47 @@ public class TableController {
 	
 	
 	
+	// =========================
+	// MENUBAR
+	// =========================
+	
+	@FXML
+	private MenuItem guardar;
+	@FXML
+	private MenuItem guardarComo;
 
+	@FXML
+	private MenuItem exportarPDF;
+
+	@FXML
+	private MenuItem exportarExcel;
+
+	@FXML
+	private MenuItem exportarHTML;
+
+	@FXML
+	private MenuItem exportarJSON;
 
 	// =========================
-	// REGRESIÓN
+	// REGRESION
 	// =========================
 
 	private RegresionLineal regresion;
 	
-	
+	@FXML
+	private void validarMenuArchivo() {
+
+	    EstadoSesion estado = GestorSesion.getEstado();
+
+	    boolean habilitar = estado.getRegresionCalculada();
+
+	    //De momento solo funciona con exportaciones, modificar despues para guardados
+	    exportarPDF.setDisable(!habilitar);
+	    exportarExcel.setDisable(!habilitar);
+	    exportarHTML.setDisable(!habilitar);
+	    exportarJSON.setDisable(!habilitar);
+	    
+	}
 
 	@FXML
 	public void initialize() {
@@ -351,7 +387,7 @@ public class TableController {
 
 			// validar tamaños
 			if (!Validaciones.mismaLongitud(x, y)) {
-				System.out.println("Las muestras no tienen el mismo tamaño");
+				System.out.println("Las muestras no tienen el mismo tamaño"); //Agregar validacion, y si retorna falso, mostrar mensaje a pantalla
 				return;
 			}
 
@@ -360,6 +396,19 @@ public class TableController {
 
 			// calcular
 			regresion.calcular();
+			
+			
+			// Actualizacion de estatus
+			
+			EstadoSesion estado = GestorSesion.getEstado();
+
+			estado.setX(x);
+			estado.setY(y);
+			estado.setRegresion(regresion);
+
+			estado.setDatosCargados(true);
+			estado.setRegresionCalculada(true);
+			 
 			
 			//Dibujar Grafica
 			dibujarGrafica(x, y);
@@ -606,6 +655,14 @@ public class TableController {
 	@FXML
 	private void abrirRepositorio() {
 	    MenuActions.abrirRepositorio();
+	}
+	
+	//Exportaciones
+	@FXML
+	private void exportarJSON() {
+
+		Window ventana = Config.getScene().getWindow();
+		ExportController.exportarJSON(Config.getScene().getWindow(), limiteDecimales);
 	}
 	
 }

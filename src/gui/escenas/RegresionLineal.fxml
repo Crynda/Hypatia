@@ -37,14 +37,14 @@
 						<MenuItem mnemonicParsing="false" text="Abrir..." />
 						<Menu mnemonicParsing="false" text="Abrir recientes" />
 						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Guardar" />
-						<MenuItem mnemonicParsing="false" text="Guardar como..." />
-                  <Menu mnemonicParsing="false" text="Exportar...">
+						<MenuItem fx:id="guardar" mnemonicParsing="false" text="Guardar" />
+						<MenuItem fx:id="guardarComo" mnemonicParsing="false" text="Guardar como..." />
+                  <Menu mnemonicParsing="false" onMenuValidation="#validarMenuArchivo" text="Exportar...">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="PDF" />
-                        <MenuItem mnemonicParsing="false" text="Excel (XLSX)" />
-                        <MenuItem mnemonicParsing="false" text="JSON" />
-                        <MenuItem mnemonicParsing="false" text="HTML" />
+                      <MenuItem fx:id="exportarPDF" mnemonicParsing="false" text="PDF" />
+                        <MenuItem fx:id="exportarExcel" mnemonicParsing="false" text="Excel (XLSX)" />
+                        <MenuItem fx:id="exportarJSON" mnemonicParsing="false" onAction="#exportarJSON" text="JSON" />
+                        <MenuItem fx:id="exportarHTML" mnemonicParsing="false" text="HTML" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Importar...">
