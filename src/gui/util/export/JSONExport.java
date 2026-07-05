@@ -9,29 +9,7 @@ import java.time.LocalDateTime;
 
 public class JSONExport {
 
-	public static void exportar(
-	        File archivo,
-	        double[] x,
-	        double[] y,
-	        RegresionLineal regresion,
-	        int decimales) {
-
-	    try (FileWriter writer = new FileWriter(archivo)) {
-
-	        String json = construirJSON(x, y, regresion, decimales);
-
-	        writer.write(json);
-
-	        System.out.println("JSON exportado correctamente: " + archivo.getAbsolutePath());
-
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-
-    
-
-    private static String construirJSON(
+    static String construirJSON(
             double[] x,
             double[] y,
             RegresionLineal r,

@@ -7,7 +7,7 @@ import estadistica.util.Formateador;
 
 public class HTMLExport {
 
-    public static String exportarHTML(
+     static String construirHTML(
             double[] x,
             double[] y,
             RegresionLineal resultado,
@@ -22,6 +22,8 @@ public class HTMLExport {
         String chartSVG = SVGExport.generarSVG(x, y, resultado);
 
         StringBuilder html = new StringBuilder();
+        
+        //Construccion del archivo...
 
         html.append("<!DOCTYPE html>")
             .append("<html lang='es'>")

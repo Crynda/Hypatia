@@ -1,6 +1,8 @@
 package gui.util.export;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -15,6 +17,21 @@ public final class ExportUtil {
   
     }
 
+    
+    public static void exportar(File archivo, String contenido) {
+
+        try (FileWriter writer = new FileWriter(archivo)) {
+
+            writer.write(contenido);
+
+            System.out.println("Archivo exportado correctamente: " + archivo.getAbsolutePath());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     // =========================
     // FILE CHOOSER
     // =========================
