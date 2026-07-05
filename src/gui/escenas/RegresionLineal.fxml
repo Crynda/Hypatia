@@ -44,7 +44,7 @@
                       <MenuItem fx:id="exportarPDF" mnemonicParsing="false" text="PDF" />
                         <MenuItem fx:id="exportarExcel" mnemonicParsing="false" text="Excel (XLSX)" />
                         <MenuItem fx:id="exportarJSON" mnemonicParsing="false" onAction="#exportarJSON" text="JSON" />
-                        <MenuItem fx:id="exportarHTML" mnemonicParsing="false" text="HTML" />
+                        <MenuItem fx:id="exportarHTML" mnemonicParsing="false" onAction="#exportarHTML" text="HTML" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Importar...">

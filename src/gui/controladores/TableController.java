@@ -166,6 +166,10 @@ public class TableController {
 
 	private RegresionLineal regresion;
 	
+	//Ventana
+	private Window ventana;
+
+	
 	@FXML
 	private void validarMenuArchivo() {
 
@@ -178,6 +182,8 @@ public class TableController {
 	    exportarExcel.setDisable(!habilitar);
 	    exportarHTML.setDisable(!habilitar);
 	    exportarJSON.setDisable(!habilitar);
+	    //Cambiar despues ubicacion
+	    ventana = Config.getScene().getWindow();
 	    
 	}
 
@@ -188,6 +194,7 @@ public class TableController {
 		ImageView imageView = new ImageView(icon);
 		imageView.setFitWidth(30);
 		imageView.setFitHeight(30);
+
 		
 		Config.setGraphic(imageView);
 		
@@ -205,6 +212,7 @@ public class TableController {
 		configurarTabla(tablaMuestrasY, colMuestraY, colValorY);
 		
 		configurarTablaEstimacion();
+		
 		
 	}
 
@@ -660,9 +668,12 @@ public class TableController {
 	//Exportaciones
 	@FXML
 	private void exportarJSON() {
-
-		Window ventana = Config.getScene().getWindow();
-		ExportController.exportarJSON(Config.getScene().getWindow(), limiteDecimales);
+		ExportController.exportarJSON(ventana, limiteDecimales);
+	}
+	
+	@FXML
+	private void exportarHTML() {
+		ExportController.exportarHTML(ventana, limiteDecimales);
 	}
 	
 }
