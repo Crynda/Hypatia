@@ -149,12 +149,12 @@
 						<Button fx:id="Calcular" layoutX="11.0" layoutY="516.0" mnemonicParsing="false" onAction="#calcularRegresion" prefHeight="25.0" prefWidth="200.0" styleClass="borde-pannel" text="Calcular" />
                   <Button fx:id="editX" layoutX="187.0" layoutY="61.0" mnemonicParsing="false" onAction="#cambiarNombreX" prefHeight="25.0" prefWidth="25.0">
                      <tooltip>
-                        <Tooltip text="Cambiar nombre de X" />
+                        <Tooltip text="Agrega un nombre contextual a X" />
                      </tooltip>
                   </Button>
                   <Button fx:id="editY" layoutX="187.0" layoutY="86.0" mnemonicParsing="false" onAction="#cambiarNombreY" prefHeight="25.0" prefWidth="25.0">
                      <tooltip>
-                        <Tooltip text="Cambiar nombre de Y" />
+                        <Tooltip text="Agrega un nombre contextual a Y" />
                      </tooltip>
                   </Button>
                   <Separator fx:id="separator1" layoutX="184.0" layoutY="62.0" orientation="VERTICAL" prefHeight="24.0" />
