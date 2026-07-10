@@ -6,6 +6,10 @@ public class EstadoSesion {
 
     private double[] x;
     private double[] y;
+    
+    private String nombreX = "X";
+    private String nombreY = "Y";
+
 
     private RegresionLineal regresion;
 
@@ -42,6 +46,25 @@ public class EstadoSesion {
 	}
 	public void setRegresionCalculada(boolean regresionCalculada) {
 		this.regresionCalculada = regresionCalculada;
+	}
+	
+	
+	//Metadatos
+	
+	public void setNombreX(String n) {
+		nombreX = n;
+	}
+	
+	public void setNombreY(String n) {
+		nombreY = n;
+	}
+	
+	public String getNombreX() {
+		return nombreX;
+	}
+	
+	public String getNombreY() {
+		return nombreY;
 	}
 	
 	public void imprimirDatos() {

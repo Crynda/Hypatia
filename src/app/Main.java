@@ -71,15 +71,6 @@ public class Main {
         
         RegresionLineal regresion = new RegresionLineal(x, y);
         regresion.calcular();
-        
-
-        System.out.println("\n=== EXPORTANDO HTML ===");
-
-        String html = HTMLExport.exportarHTML(x, y, regresion, 2);
-
-        File file = new File("reporte.html");
-        Files.writeString(file.toPath(), html);
-
        
 		
 	}

@@ -1,6 +1,7 @@
 package gui.controladores;
 
 import java.text.DecimalFormat;
+import java.util.Optional;
 
 import gui.actions.menubar.MenuActions;
 import gui.componentes.CeldaEditableTab;
@@ -12,15 +13,20 @@ import gui.status.EstadoSesion;
 import gui.status.GestorSesion;
 import gui.util.ConversorTabla;
 import gui.util.export.ExportController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -48,7 +54,27 @@ public class TableController {
 	private double[] x;
 	private double[] y;
 	
-
+	
+	// =========================
+	// NODOS
+	// =========================
+	
+	//Panes
+	
+	@FXML
+	private TitledPane tpX;
+	
+	@FXML
+	private TitledPane tpY;
+	
+	//Separadores
+	
+	@FXML
+	private Separator separator1;
+	
+	@FXML
+	private Separator separator2;
+	
 	//Grafica
 	@FXML
 	private LineChart<Number, Number> Grafica;	
@@ -137,6 +163,12 @@ public class TableController {
 	@FXML
 	private Button Config;
 	
+	@FXML
+	private Button editY;
+	
+	@FXML
+	private Button editX;
+	
 	
 	
 	// =========================
@@ -168,12 +200,16 @@ public class TableController {
 	
 	//Ventana
 	private Window ventana;
+	
+	//Status
+	EstadoSesion estado;
+
 
 	
 	@FXML
 	private void validarMenuArchivo() {
 
-	    EstadoSesion estado = GestorSesion.getEstado();
+		estado = GestorSesion.getEstado();
 
 	    boolean habilitar = estado.getRegresionCalculada();
 
@@ -190,28 +226,45 @@ public class TableController {
 	@FXML
 	public void initialize() {
 		
-		Image icon = new Image(getClass().getResourceAsStream("/recursos/Config.png"));
-		ImageView imageView = new ImageView(icon);
+		ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/recursos/Config.png")));
 		imageView.setFitWidth(30);
 		imageView.setFitHeight(30);
 
-		
+				
 		Config.setGraphic(imageView);
+		Config.setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;" + "-fx-padding: 0;");
 		
-		Config.setGraphic(imageView);
-		Config.setText("");
-
-		Config.setStyle(
-		    "-fx-background-color: transparent;" +
-		    "-fx-border-color: transparent;" +
-		    "-fx-padding: 0;"
-		);
+		imageView = new ImageView(new Image(getClass().getResourceAsStream("/recursos/Edit.png")));
+		imageView.setFitWidth(18);
+		imageView.setFitHeight(18);
+		
+		ImageView imageView2 = new ImageView(new Image(getClass().getResourceAsStream("/recursos/Edit.png")));
+		imageView2.setFitWidth(18);
+		imageView2.setFitHeight(18);
+		
+		editX.setGraphic(imageView);
+		editX.setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;" + "-fx-padding: 0;");
+		
+		editY.setGraphic(imageView2);
+		editY.setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;" + "-fx-padding: 0;");
+		
+		
 
 		configurarTabla(tablaMuestrasX, colMuestraX, colValorX);
 
 		configurarTabla(tablaMuestrasY, colMuestraY, colValorY);
 		
 		configurarTablaEstimacion();
+		
+		estado = GestorSesion.getEstado();
+		
+		tpX.boundsInParentProperty().addListener((obs, oldBounds, newBounds) -> {
+		    actualizarBotones();
+		});
+
+		tpY.boundsInParentProperty().addListener((obs, oldBounds, newBounds) -> {
+		    actualizarBotones();
+		});
 		
 		
 	}
@@ -401,6 +454,9 @@ public class TableController {
 
 			// crear regresión
 			regresion = new RegresionLineal(x, y);
+			
+			//Establecer metadatos
+			regresion.setNombres(estado.getNombreX(), estado.getNombreY());
 
 			// calcular
 			regresion.calcular();
@@ -408,8 +464,6 @@ public class TableController {
 			
 			// Actualizacion de estatus
 			
-			EstadoSesion estado = GestorSesion.getEstado();
-
 			estado.setX(x);
 			estado.setY(y);
 			estado.setRegresion(regresion);
@@ -418,7 +472,6 @@ public class TableController {
 			estado.setRegresionCalculada(true);
 			 
 			
-			//Dibujar Grafica
 			dibujarGrafica(x, y);
 			
 			obtenerDatos();
@@ -656,6 +709,71 @@ public class TableController {
 	public void setLimiteDecimales(int limite) { //Reasignar clase
 	    this.limiteDecimales = limite;
 	    actualizarFormato();
+	}
+	
+	//Cambiar nombres
+	
+	@FXML
+	private void cambiarNombreX() {
+
+	    TextInputDialog dialogo = new TextInputDialog(estado.getNombreX());
+
+	    dialogo.setTitle("Nombre de Variable");
+	    dialogo.setHeaderText("Asignar nombre a la variable X");
+	    dialogo.setContentText("Nombre:");
+
+	    Optional<String> resultado = dialogo.showAndWait();
+
+	    resultado.ifPresent(nombre -> {
+
+	        nombre = nombre.trim();
+
+	        if (nombre.isBlank() || nombre.equalsIgnoreCase("X")) {
+	            estado.setNombreX("X");
+	            tpX.setText("X");
+	        } else {
+	            estado.setNombreX(nombre);
+	            tpX.setText("X (" + nombre + ")");
+	        }
+
+	    });
+
+	}
+	
+	@FXML
+	private void cambiarNombreY() {
+
+	    TextInputDialog dialogo = new TextInputDialog(estado.getNombreY());
+
+	    dialogo.setTitle("Nombre de Variable");
+	    dialogo.setHeaderText("Asignar nombre a la variable Y");
+	    dialogo.setContentText("Nombre:");
+
+	    Optional<String> resultado = dialogo.showAndWait();
+
+	    resultado.ifPresent(nombre -> {
+
+	        nombre = nombre.trim();
+
+	        if (nombre.isBlank() || nombre.equalsIgnoreCase("Y")) {
+	            estado.setNombreY("Y");
+	            tpY.setText("Y");
+	        } else {
+	            estado.setNombreY(nombre);
+	            tpY.setText("Y (" + nombre + ")");
+	        }
+
+	    });
+
+	}
+	
+	private void actualizarBotones() {
+
+	    Bounds y = tpY.localToParent(tpY.getBoundsInLocal());
+	    System.out.println("Bounds Y: " + y);
+
+	    editY.setLayoutY(y.getMaxY()+36);
+	    separator2.setLayoutY(y.getMaxY() + 36);
 	}
 	
 	//MenuBar

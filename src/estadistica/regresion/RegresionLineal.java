@@ -24,6 +24,10 @@ public class RegresionLineal extends ModeloEstadistico {
 	private double sumaXY;
 	private double sumaX2;
 	private double sumaY2;
+	
+	//Parametros contextuales
+	private String nombreX;
+	private String nombreY;
 
 	public RegresionLineal(double[] x, double[] y) {
 
@@ -191,6 +195,21 @@ public class RegresionLineal extends ModeloEstadistico {
 
 	public double getSumaY2() {
 		return sumaY2;
+	}
+	
+	//Contextuales
+	
+	public void setNombres(String nombreX, String nombreY){
+	    this.nombreX = nombreX;
+	    this.nombreY = nombreY;
+	}
+	
+	public String getNombreX() {
+		return nombreX;
+	}
+	
+	public String getNombreY() {
+		return nombreY;
 	}
 	
 	

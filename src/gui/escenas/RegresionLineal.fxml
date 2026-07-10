@@ -96,34 +96,34 @@
 						<Separator layoutX="11.0" layoutY="53.0" prefWidth="200.0" />
 						<Accordion layoutX="10.0" layoutY="61.0" prefHeight="449.0" prefWidth="202.0" styleClass="borde-panel">
 							<panes>
-
-								<TitledPane text="X">
-									<content>
-										<AnchorPane prefHeight="300.0" prefWidth="200.0">
-
-											<children>
-
-												<TableView fx:id="tablaMuestrasX" editable="true" layoutX="0.0" layoutY="0.0" prefHeight="300.0" prefWidth="200.0" styleClass="borde-pannel2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-													<columns>
-
-														<TableColumn fx:id="colMuestraX" prefWidth="90.0" sortable="false" styleClass="resultado" text="Muestra" />
-
-														<TableColumn fx:id="colValorX" prefWidth="100.0" sortable="false" text="Valor" />
-
-													</columns>
-													<tooltip>
-														<Tooltip text="Muestra: numero de muestra, Valor: valor de dicha muestra" />
-													</tooltip>
-
-												</TableView>
-
-											</children>
-
-										</AnchorPane>
-									</content>
-								</TitledPane>
-								<TitledPane text="Y">
+      
+            								<TitledPane fx:id="tpX" text="X">
+      									<content>
+      										<AnchorPane prefHeight="300.0" prefWidth="200.0">
+      
+            											<children>
+      
+            												<TableView fx:id="tablaMuestrasX" editable="true" prefHeight="300.0" prefWidth="200.0" styleClass="borde-pannel2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      
+            													<columns>
+      
+            														<TableColumn fx:id="colMuestraX" prefWidth="90.0" sortable="false" styleClass="resultado" text="Muestra" />
+      
+            														<TableColumn fx:id="colValorX" prefWidth="100.0" sortable="false" text="Valor" />
+      
+            													</columns>
+      													<tooltip>
+      														<Tooltip text="Muestra: numero de muestra, Valor: valor de dicha muestra" />
+      													</tooltip>
+      
+            												</TableView>
+      
+            											</children>
+      
+            										</AnchorPane>
+      									</content>
+      								</TitledPane>
+								<TitledPane fx:id="tpY" text="Y">
 									<content>
 										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 											<children>
@@ -147,6 +147,18 @@
 							</panes>
 						</Accordion>
 						<Button fx:id="Calcular" layoutX="11.0" layoutY="516.0" mnemonicParsing="false" onAction="#calcularRegresion" prefHeight="25.0" prefWidth="200.0" styleClass="borde-pannel" text="Calcular" />
+                  <Button fx:id="editX" layoutX="187.0" layoutY="61.0" mnemonicParsing="false" onAction="#cambiarNombreX" prefHeight="25.0" prefWidth="25.0">
+                     <tooltip>
+                        <Tooltip text="Cambiar nombre de X" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="editY" layoutX="187.0" layoutY="86.0" mnemonicParsing="false" onAction="#cambiarNombreY" prefHeight="25.0" prefWidth="25.0">
+                     <tooltip>
+                        <Tooltip text="Cambiar nombre de Y" />
+                     </tooltip>
+                  </Button>
+                  <Separator fx:id="separator1" layoutX="184.0" layoutY="62.0" orientation="VERTICAL" prefHeight="24.0" />
+                  <Separator fx:id="separator2" layoutX="184.0" layoutY="87.0" orientation="VERTICAL" prefHeight="24.0" />
 					</children>
 				</AnchorPane>
 				<ScrollPane prefHeight="-1.0" prefWidth="-1.0">
