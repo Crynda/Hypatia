@@ -9,12 +9,16 @@ import java.time.LocalDateTime;
 
 public class JSONExport {
 
-    static String construirJSON(
-            double[] x,
-            double[] y,
-            RegresionLineal r,
-            int decimales
-    ) {
+	static String construirJSON(
+	        RegresionLineal r,
+	        int decimales
+	) {
+		
+		double[] x = r.getX();
+		double[] y = r.getY();
+
+		String nombreX = r.getNombreX();
+		String nombreY = r.getNombreY();
 
         StringBuilder sb = new StringBuilder();
 
@@ -29,18 +33,37 @@ public class JSONExport {
         // ================= DATOS =================
         sb.append("  \"datos\": {\n");
 
-        sb.append("    \"x\": ").append(arrayToJson(x)).append(",\n");
-        sb.append("    \"y\": ").append(arrayToJson(y)).append(",\n");
+        sb.append("    \"")
+        .append(nombreX)
+        .append("\": ")
+        .append(arrayToJson(x))
+        .append(",\n");
 
-        sb.append("    \"pares\": [");
+      sb.append("    \"")
+        .append(nombreY)
+        .append("\": ")
+        .append(arrayToJson(y))
+        .append(",\n");
 
-        for (int i = 0; i < x.length; i++) {
-            sb.append("{\"x\":").append(x[i])
-              .append(",\"y\":").append(y[i]).append("}");
-            if (i < x.length - 1) sb.append(",");
-        }
+      sb.append("    \"pares\": [");
 
-        sb.append("]\n  },\n");
+      for (int i = 0; i < x.length; i++) {
+
+          sb.append("{\"")
+            .append(nombreX)
+            .append("\":")
+            .append(x[i])
+            .append(",\"")
+            .append(nombreY)
+            .append("\":")
+            .append(y[i])
+            .append("}");
+
+          if (i < x.length - 1)
+              sb.append(",");
+      }
+
+      sb.append("]\n  },\n");
 
         // ================= CÁLCULOS =================
         sb.append("  \"calculos\": {\n");

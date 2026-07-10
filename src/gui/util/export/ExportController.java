@@ -35,7 +35,7 @@ public class ExportController {
             return;
         }
 
-        String json = JSONExport.construirJSON(estado.getX(), estado.getY(), estado.getRegresion(), decimales);
+        String json = JSONExport.construirJSON(estado.getRegresion(), decimales);
 
         ExportUtil.exportar(archivo, json);
     }
