@@ -772,8 +772,8 @@ public class TableController {
 	    Bounds y = tpY.localToParent(tpY.getBoundsInLocal());
 	    System.out.println("Bounds Y: " + y);
 
-	    editY.setLayoutY(y.getMaxY()+36);
-	    separator2.setLayoutY(y.getMaxY() + 36);
+	    editY.setLayoutY(y.getMinY()+62);
+	    separator2.setLayoutY(y.getMinY() + 62);
 	}
 	
 	//MenuBar
