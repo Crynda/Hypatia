@@ -42,6 +42,7 @@
                   <Menu mnemonicParsing="false" onMenuValidation="#validarMenuArchivo" text="Exportar...">
                     <items>
                       <MenuItem fx:id="exportarPDF" mnemonicParsing="false" text="PDF" />
+                        <MenuItem mnemonicParsing="false" onAction="#exportarImagen" text="Imagen (Grafica)" />
                         <MenuItem fx:id="exportarExcel" mnemonicParsing="false" text="Excel (XLSX)" />
                         <MenuItem fx:id="exportarJSON" mnemonicParsing="false" onAction="#exportarJSON" text="JSON" />
                         <MenuItem fx:id="exportarHTML" mnemonicParsing="false" onAction="#exportarHTML" text="HTML" />

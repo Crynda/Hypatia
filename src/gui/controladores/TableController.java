@@ -11,6 +11,8 @@ import gui.componentes.Dato;
 import gui.config.GestorTemas;
 import gui.status.EstadoSesion;
 import gui.status.GestorSesion;
+import gui.status.graphics.GraficoSesion;
+import gui.status.graphics.PuntoGrafico;
 import gui.util.ConversorTabla;
 import gui.util.export.ExportController;
 import javafx.application.Platform;
@@ -468,13 +470,18 @@ public class TableController {
 			estado.setY(y);
 			estado.setRegresion(regresion);
 
+			GraficoSesion grafico = new GraficoSesion(x, y, regresion);
+			estado.setGrafico(grafico);
+			
 			estado.setDatosCargados(true);
 			estado.setRegresionCalculada(true);
 			 
 			
-			dibujarGrafica(x, y);
+			dibujarGrafica(grafico);
 			
 			obtenerDatos();
+			
+			estado.imprimirDatos();
 
 		} catch (Exception e) {
 
@@ -541,7 +548,7 @@ public class TableController {
 	
 	}
 	
-	private void dibujarGrafica(double[] x, double[] y) {
+	private void dibujarGrafica(GraficoSesion grafico) {
 
 	    Grafica.getData().clear();
 
@@ -552,11 +559,11 @@ public class TableController {
 	    NumberAxis ejeX = (NumberAxis) Grafica.getXAxis();
 	    NumberAxis ejeY = (NumberAxis) Grafica.getYAxis();
 
-	    double minX = EstadisticaDescriptiva.minimo(x);
-	    double maxX = EstadisticaDescriptiva.maximo(x);
+	    double minX = grafico.getMinX();
+	    double maxX = grafico.getMaxX();
 
-	    double minY = EstadisticaDescriptiva.minimo(y);
-	    double maxY = EstadisticaDescriptiva.maximo(y);
+	    double minY = grafico.getMinY();
+	    double maxY = grafico.getMaxY();
 
 	    ejeX.setAutoRanging(false);
 	    ejeY.setAutoRanging(false);
@@ -570,6 +577,7 @@ public class TableController {
 	    ejeX.setTickUnit(1);
 	    ejeY.setTickUnit(1);
 
+
 	    // =========================
 	    // DISPERSIÓN
 	    // =========================
@@ -579,12 +587,17 @@ public class TableController {
 
 	    dispersion.setName("Datos");
 
-	    for (int i = 0; i < x.length; i++) {
+
+	    for (PuntoGrafico punto : grafico.getDatos()) {
 
 	        dispersion.getData().add(
-	                new XYChart.Data<>(x[i], y[i])
+	                new XYChart.Data<>(
+	                        punto.getX(),
+	                        punto.getY()
+	                )
 	        );
 	    }
+
 
 	    // =========================
 	    // RECTA DE REGRESIÓN
@@ -595,34 +608,44 @@ public class TableController {
 
 	    recta.setName("Recta de regresión");
 
-	    double y1 = regresion.getIntercepto() + (regresion.getPendiente() * minX);
 
-	    double y2 = regresion.getIntercepto() + (regresion.getPendiente() * maxX);
+	    PuntoGrafico inicio = grafico.getInicioRecta();
+	    PuntoGrafico fin = grafico.getFinRecta();
 
-	    recta.getData().add(
-	            new XYChart.Data<>(minX, y1)
-	    );
 
 	    recta.getData().add(
-	            new XYChart.Data<>(maxX, y2)
+	            new XYChart.Data<>(
+	                    inicio.getX(),
+	                    inicio.getY()
+	            )
 	    );
+
+
+	    recta.getData().add(
+	            new XYChart.Data<>(
+	                    fin.getX(),
+	                    fin.getY()
+	            )
+	    );
+
 
 	    // =========================
 	    // AGREGAR SERIES
 	    // =========================
 
 	    Grafica.getData().addAll(dispersion, recta);
-	    
+
+
 	    // quitar línea de dispersión
 	    dispersion.getNode().setStyle(
 	        "-fx-stroke-width: 0px;"
 	    );
 
+
 	    // =========================
 	    // ESTILO DISPERSIÓN
 	    // =========================
 
-	    // mantener puntos visibles
 	    for (XYChart.Data<Number, Number> data : dispersion.getData()) {
 
 	        data.getNode().setStyle(
@@ -630,7 +653,6 @@ public class TableController {
 	        );
 	    }
 	}
-	
 	@FXML
 	private void abrirOpciones() {
 
@@ -770,7 +792,6 @@ public class TableController {
 	private void actualizarBotones() {
 
 	    Bounds y = tpY.localToParent(tpY.getBoundsInLocal());
-	    System.out.println("Bounds Y: " + y);
 
 	    editY.setLayoutY(y.getMinY()+62);
 	    separator2.setLayoutY(y.getMinY() + 62);
@@ -794,4 +815,8 @@ public class TableController {
 		ExportController.exportarHTML(ventana, limiteDecimales);
 	}
 	
+	@FXML
+	private void exportarImagen() {
+		ExportController.exportarImagen(ventana);
+	}
 }

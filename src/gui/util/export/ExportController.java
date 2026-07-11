@@ -60,24 +60,9 @@ public class ExportController {
 
         ExportUtil.exportar(archivo, html);
     }
+    
+    
 
-    public static void exportarCSV(
-            double[] x,
-            double[] y,
-            RegresionLineal regresion,
-            int decimales) {
-
-        CSVExport.exportar(x, y, regresion, decimales);
-    }
-
-    public static void exportarExcel(
-            double[] x,
-            double[] y,
-            RegresionLineal regresion,
-            int decimales) {
-
-        ExcelExport.exportar(x, y, regresion, decimales);
-    }
     
     
 
