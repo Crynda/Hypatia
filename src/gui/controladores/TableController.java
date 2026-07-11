@@ -817,6 +817,6 @@ public class TableController {
 	
 	@FXML
 	private void exportarImagen() {
-		ExportController.exportarImagen(ventana);
+		ExportController.exportarImagen(ventana, Grafica);
 	}
 }

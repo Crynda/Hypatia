@@ -5,6 +5,8 @@ import java.io.File;
 import estadistica.regresion.RegresionLineal;
 import gui.status.EstadoSesion;
 import gui.status.GestorSesion;
+import javafx.scene.Node;
+import javafx.scene.chart.LineChart;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -61,7 +63,30 @@ public class ExportController {
         ExportUtil.exportar(archivo, html);
     }
     
-    
+    public static void exportarImagen(Window owner, Node grafica) {
+
+        FileChooser chooser = ExportUtil.crearFileChooser(
+                "Guardar imagen",
+                "hypatia-grafica",
+                "PNG (*.png)",
+                "png"
+        );
+
+        File archivo = chooser.showSaveDialog(owner);
+
+        if (archivo == null) {
+            return;
+        }
+
+        archivo = ExportUtil.asegurarExtension(archivo, "png");
+
+        if (!ExportUtil.confirmarSobrescritura(archivo)) {
+            return;
+        }
+
+        ImageExport.exportar(grafica, archivo);
+    }
+
 
     
     
