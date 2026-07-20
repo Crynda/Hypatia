@@ -73,4 +73,6 @@ public final class Operaciones {
 	public static double desviacionEstandarMuestral(double[] datos) {
 		return Math.sqrt(varianzaMuestral(datos));
 	}
+	
+	
 }

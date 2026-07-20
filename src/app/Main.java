@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import estadistica.interpretacion.GeneradorInterpretacion;
+import estadistica.interpretacion.InterpretacionRegresion;
 import estadistica.modelos.Muestra;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.*;
+import gui.status.EstadoSesion;
 import gui.util.export.HTMLExport;
 import gui.util.export.JSONExport;
 
@@ -71,6 +74,21 @@ public class Main {
         
         RegresionLineal regresion = new RegresionLineal(x, y);
         regresion.calcular();
+        
+        
+        EstadoSesion estado = new EstadoSesion();
+        estado.setX(x);
+        estado.setY(y);
+        estado.setNombreX("Horas");
+        estado.setNombreY("Calificación");
+        estado.setRegresion(regresion);
+
+        InterpretacionRegresion interpretacion = GeneradorInterpretacion.generar(estado, 2);
+
+        System.out.println("\n=== INTERPRETACIÓN ===");
+        System.out.println("Semáforo: " + interpretacion.getSemaforo());
+        System.out.println("R²: " + interpretacion.getR2Pct() + "%");
+        System.out.println("Se relativo: " + interpretacion.getSeRelPct() + "%");
        
 		
 	}
