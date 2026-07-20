@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 
 public class JSONExport {
 
-	static String construirJSON(
-	        RegresionLineal r,
-	        int decimales
-	) {
+	static String construirJSON(RegresionLineal r, int decimales) {
 		
 		double[] x = r.getX();
 		double[] y = r.getY();

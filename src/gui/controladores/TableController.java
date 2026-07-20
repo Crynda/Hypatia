@@ -181,18 +181,16 @@ public class TableController {
 	private MenuItem guardar;
 	@FXML
 	private MenuItem guardarComo;
-
 	@FXML
 	private MenuItem exportarPDF;
-
 	@FXML
 	private MenuItem exportarExcel;
-
 	@FXML
 	private MenuItem exportarHTML;
-
 	@FXML
 	private MenuItem exportarJSON;
+	@FXML
+	private MenuItem exportarImagen;
 
 	// =========================
 	// REGRESION
@@ -215,11 +213,12 @@ public class TableController {
 
 	    boolean habilitar = estado.getRegresionCalculada();
 
-	    //De momento solo funciona con exportaciones, modificar despues para guardados
+	    //Exportaciones
 	    exportarPDF.setDisable(!habilitar);
 	    exportarExcel.setDisable(!habilitar);
 	    exportarHTML.setDisable(!habilitar);
 	    exportarJSON.setDisable(!habilitar);
+	    exportarImagen.setDisable(!habilitar);
 	    //Cambiar despues ubicacion
 	    ventana = Config.getScene().getWindow();
 	    
@@ -653,6 +652,7 @@ public class TableController {
 	        );
 	    }
 	}
+	
 	@FXML
 	private void abrirOpciones() {
 

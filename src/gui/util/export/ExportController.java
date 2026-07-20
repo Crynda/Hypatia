@@ -12,14 +12,7 @@ import javafx.stage.Window;
 
 public class ExportController {
 
-    public static void exportarPDF(
-            double[] x,
-            double[] y,
-            RegresionLineal regresion,
-            int decimales) {
-
-        PDFExport.exportar(x, y, regresion, decimales);
-    }
+    
 
     public static void exportarJSON(Window owner, int decimales) {
 
@@ -65,12 +58,7 @@ public class ExportController {
     
     public static void exportarImagen(Window owner, Node grafica) {
 
-        FileChooser chooser = ExportUtil.crearFileChooser(
-                "Guardar imagen",
-                "hypatia-grafica",
-                "PNG (*.png)",
-                "png"
-        );
+        FileChooser chooser = ExportUtil.crearFileChooser("Guardar imagen", "hypatia-grafica", "PNG (*.png)", "png");
 
         File archivo = chooser.showSaveDialog(owner);
 
