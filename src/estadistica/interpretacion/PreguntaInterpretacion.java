@@ -2,16 +2,19 @@ package estadistica.interpretacion;
 
 public class PreguntaInterpretacion {
 
+    private final String pregunta;
+
     private String respuesta;
     private String detalle;
 
-    public PreguntaInterpretacion() {
+    public PreguntaInterpretacion(String pregunta) {
+
+        this.pregunta = pregunta;
 
     }
 
-    public PreguntaInterpretacion(String respuesta, String detalle) {
-        this.respuesta = respuesta;
-        this.detalle = detalle;
+    public String getPregunta() {
+        return pregunta;
     }
 
     public String getRespuesta() {

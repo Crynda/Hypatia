@@ -1,8 +1,6 @@
 package app;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 import estadistica.interpretacion.GeneradorInterpretacion;
 import estadistica.interpretacion.InterpretacionRegresion;
@@ -10,8 +8,6 @@ import estadistica.modelos.Muestra;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.*;
 import gui.status.EstadoSesion;
-import gui.util.export.HTMLExport;
-import gui.util.export.JSONExport;
 
 public class Main {
 
@@ -28,7 +24,7 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 	
-		double[] datos = {10, 20, 30, 40, 50};
+		double[] datos = {10, 20, 30, 40};
 
         System.out.println("=== OPERACIONES ===");
         System.out.println("Suma: " + Operaciones.suma(datos));
@@ -60,16 +56,12 @@ public class Main {
         System.out.println("Tamaño: " + muestra.tamanio());
         System.out.println("Promedio muestra: " + muestra.promedio());
         System.out.println("Varianza muestra: " + muestra.varianza());
-        
-        //Estructurar mejor
-        System.out.println("Desviacion estandar: "
-                + Math.sqrt(muestra.varianza()));
+        System.out.println("Desviacion estandar: " + Math.sqrt(muestra.varianza()));
 
         
         //double[] x = {10, 2, 14, 0, 6, 8, 3, 12, 1, 15, 5, 11, 7, 4, 16};
         //double[] y = {3.2, 7.5, 2, 8.5, 4.8, 4, 6.8, 2.5, 8, 1.8, 5.5, 3, 4.5, 6, 1.5};
         double[] x = {1, 2, 3, 4, 5};
-        //double[] y = {2, 5, 4, 8, 7};
         double[] y = {2, 4, 5, 4, 5};
         
         RegresionLineal regresion = new RegresionLineal(x, y);
@@ -86,9 +78,46 @@ public class Main {
         InterpretacionRegresion interpretacion = GeneradorInterpretacion.generar(estado, 2);
 
         System.out.println("\n=== INTERPRETACIÓN ===");
+
         System.out.println("Semáforo: " + interpretacion.getSemaforo());
+        System.out.println("Calidad: " + interpretacion.getCalidad());
+        System.out.println("Fuerza: " + interpretacion.getFuerza());
+        System.out.println("Dirección: " + interpretacion.getDireccion());
+
         System.out.println("R²: " + interpretacion.getR2Pct() + "%");
         System.out.println("Se relativo: " + interpretacion.getSeRelPct() + "%");
+
+        System.out.println();
+
+        System.out.println("Ejemplo X: " + interpretacion.getEjemploX());
+        System.out.println("Ejemplo Y: " + interpretacion.getEjemploY());
+
+        System.out.println("Pendiente dirección: " + interpretacion.getPendienteDir());
+
+        System.out.println("Pendiente valor: " + interpretacion.getPendienteVal());
+
+        System.out.println();
+
+        System.out.println("Pregunta 1: " + interpretacion.getPregunta1().getPregunta());
+        System.out.println("Respuesta: " + interpretacion.getPregunta1().getRespuesta());
+        System.out.println("Detalle: " + interpretacion.getPregunta1().getDetalle());
+
+        System.out.println();
+
+        System.out.println("Pregunta 2: " + interpretacion.getPregunta2().getPregunta());
+        System.out.println("Respuesta: " + interpretacion.getPregunta2().getRespuesta());
+        System.out.println("Detalle: " + interpretacion.getPregunta2().getDetalle());
+
+        System.out.println();
+
+        System.out.println("Pregunta 3: " + interpretacion.getPregunta3().getPregunta());
+        System.out.println("Respuesta: " + interpretacion.getPregunta3().getRespuesta());
+        System.out.println("Detalle: " + interpretacion.getPregunta3().getDetalle());
+
+        System.out.println();
+
+        System.out.println("Conclusión:");
+        System.out.println(interpretacion.getConclusion());
        
 		
 	}

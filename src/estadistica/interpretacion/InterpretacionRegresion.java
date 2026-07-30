@@ -17,9 +17,11 @@ public class InterpretacionRegresion {
     private String pendienteDir;
     private String pendienteVal;
 
-    private PreguntaInterpretacion pregunta1;
-    private PreguntaInterpretacion pregunta2;
-    private PreguntaInterpretacion pregunta3;
+    private final PreguntaInterpretacion pregunta1 = new PreguntaInterpretacion("¿Existe relación entre las variables?");
+
+    private final PreguntaInterpretacion pregunta2 = new PreguntaInterpretacion("¿Qué tan bien explica el modelo los datos?");
+
+    private final PreguntaInterpretacion pregunta3 = new PreguntaInterpretacion("¿Qué tan confiables son las predicciones?");
 
     private String conclusion;
 
@@ -111,24 +113,12 @@ public class InterpretacionRegresion {
         return pregunta1;
     }
 
-    public void setPregunta1(PreguntaInterpretacion pregunta1) {
-        this.pregunta1 = pregunta1;
-    }
-
     public PreguntaInterpretacion getPregunta2() {
         return pregunta2;
     }
 
-    public void setPregunta2(PreguntaInterpretacion pregunta2) {
-        this.pregunta2 = pregunta2;
-    }
-
     public PreguntaInterpretacion getPregunta3() {
         return pregunta3;
-    }
-
-    public void setPregunta3(PreguntaInterpretacion pregunta3) {
-        this.pregunta3 = pregunta3;
     }
 
     public String getConclusion() {
