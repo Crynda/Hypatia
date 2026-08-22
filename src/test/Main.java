@@ -1,6 +1,7 @@
-package app;
+package test;
 
 import java.io.IOException;
+
 
 import estadistica.interpretacion.GeneradorInterpretacion;
 import estadistica.interpretacion.InterpretacionRegresion;
@@ -8,6 +9,13 @@ import estadistica.modelos.Muestra;
 import estadistica.regresion.RegresionLineal;
 import estadistica.util.*;
 import gui.status.EstadoSesion;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import gui.util.export.PDFExport;
+
+
 
 public class Main {
 
@@ -118,6 +126,17 @@ public class Main {
 
         System.out.println("Conclusión:");
         System.out.println(interpretacion.getConclusion());
+        
+        // =========================
+        // PRUEBA DE EXPORTACIÓN PDF
+        // =========================
+
+        BufferedImage grafica = new BufferedImage(800, 500, BufferedImage.TYPE_INT_RGB);
+        File archivoPDF = new File("prueba-regresion.pdf");
+        PDFExport.exportar(archivoPDF, interpretacion, grafica);
+
+        System.out.println();
+        System.out.println("PDF generado: " + archivoPDF.getAbsolutePath());
        
 		
 	}
