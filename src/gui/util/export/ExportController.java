@@ -56,6 +56,25 @@ public class ExportController {
         ExportUtil.exportar(archivo, html);
     }
     
+    public static void exportarPDF(Window owner, Node grafica, int decimales) {
+
+        EstadoSesion estado = GestorSesion.getEstado();
+        FileChooser chooser = ExportUtil.crearFileChooser("Guardar PDF", "hypatia-regresion", "PDF (*.pdf)", "pdf");
+        File archivo = chooser.showSaveDialog(owner);
+
+        if (archivo == null) {
+            return;
+        }
+
+        archivo = ExportUtil.asegurarExtension(archivo, "pdf");
+
+        if (!ExportUtil.confirmarSobrescritura(archivo)) {
+            return;
+        }
+
+        PDFExport.exportar(archivo, estado, grafica, decimales);
+    }
+    
     public static void exportarImagen(Window owner, Node grafica) {
 
         FileChooser chooser = ExportUtil.crearFileChooser("Guardar imagen", "hypatia-grafica", "PNG (*.png)", "png");

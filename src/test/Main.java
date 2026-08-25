@@ -133,7 +133,7 @@ public class Main {
 
         BufferedImage grafica = new BufferedImage(800, 500, BufferedImage.TYPE_INT_RGB);
         File archivoPDF = new File("prueba-regresion.pdf");
-        PDFExport.exportar(archivoPDF, interpretacion, grafica);
+        //PDFExport.exportar(archivoPDF, interpretacion, grafica);
 
         System.out.println();
         System.out.println("PDF generado: " + archivoPDF.getAbsolutePath());

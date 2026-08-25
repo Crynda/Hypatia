@@ -2,9 +2,11 @@ package gui.util.export;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
+import estadistica.interpretacion.GeneradorInterpretacion;
 import estadistica.interpretacion.InterpretacionRegresion;
+import gui.status.EstadoSesion;
+import javafx.scene.Node;
 
 public final class PDFExport {
 
@@ -12,9 +14,16 @@ public final class PDFExport {
 
     }
 
-    public static void exportar(File archivo, InterpretacionRegresion interpretacion, BufferedImage grafica) throws IOException {
+    public static void exportar(File archivo, EstadoSesion estado, Node grafica, int decimales) {
 
-        ConstructorPDF constructor = new ConstructorPDF(interpretacion, grafica);
+        // Interpretacion
+        InterpretacionRegresion interpretacion = GeneradorInterpretacion.generar(estado, decimales);
+
+        // Grafica
+        BufferedImage imagen =ImageExport.generar(grafica);
+
+        // Construccion del PDF
+        ConstructorPDF constructor = new ConstructorPDF(interpretacion, imagen);
         constructor.construir(archivo);
     }
 

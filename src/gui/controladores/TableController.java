@@ -819,4 +819,9 @@ public class TableController {
 	private void exportarImagen() {
 		ExportController.exportarImagen(ventana, Grafica);
 	}
+	
+	@FXML
+	private void exportarPDF() {
+		ExportController.exportarPDF(ventana, Grafica, limiteDecimales);
+	}
 }
