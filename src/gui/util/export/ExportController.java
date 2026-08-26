@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import javafx.scene.control.TextInputDialog;
 
 public class ExportController {
 
@@ -59,7 +60,35 @@ public class ExportController {
     public static void exportarPDF(Window owner, Node grafica, int decimales) {
 
         EstadoSesion estado = GestorSesion.getEstado();
-        FileChooser chooser = ExportUtil.crearFileChooser("Guardar PDF", "hypatia-regresion", "PDF (*.pdf)", "pdf");
+
+        // =========================
+        // Nombre del reporte
+        // =========================
+
+        TextInputDialog dialogo = new TextInputDialog("Hypatia");
+
+        dialogo.setTitle("Nombre del reporte");
+        dialogo.setHeaderText("Nombre del reporte");
+        dialogo.setContentText("Introduce el nombre:");
+
+        var resultado = dialogo.showAndWait();
+
+        if (resultado.isEmpty()) {
+            return;
+        }
+
+        String nombreReporte = resultado.get().trim();
+
+        if (nombreReporte.isEmpty()) {
+            return;
+        }
+
+        // =========================
+        // Seleccionar ubicación
+        // =========================
+
+        FileChooser chooser = ExportUtil.crearFileChooser("Guardar PDF", nombreReporte, "PDF (*.pdf)", "pdf");
+
         File archivo = chooser.showSaveDialog(owner);
 
         if (archivo == null) {
@@ -72,7 +101,11 @@ public class ExportController {
             return;
         }
 
-        PDFExport.exportar(archivo, estado, grafica, decimales);
+        // =========================
+        // Generar PDF
+        // =========================
+
+        PDFExport.exportar(archivo, estado, grafica, decimales, nombreReporte);
     }
     
     public static void exportarImagen(Window owner, Node grafica) {

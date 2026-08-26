@@ -14,16 +14,19 @@ public final class PDFExport {
 
     }
 
-    public static void exportar(File archivo, EstadoSesion estado, Node grafica, int decimales) {
+    
+    
+    public static void exportar(File archivo, EstadoSesion estado, Node grafica, int decimales, String nombreReporte) {
 
-        // Interpretacion
+        // Interpretación
         InterpretacionRegresion interpretacion = GeneradorInterpretacion.generar(estado, decimales);
 
-        // Grafica
-        BufferedImage imagen =ImageExport.generar(grafica);
+        // Gráfica
+        BufferedImage imagen = ImageExport.generar(grafica);
 
-        // Construccion del PDF
-        ConstructorPDF constructor = new ConstructorPDF(interpretacion, imagen);
+        // Construcción del PDF
+        ConstructorPDF constructor = new ConstructorPDF(interpretacion, imagen, nombreReporte);
+
         constructor.construir(archivo);
     }
 

@@ -28,11 +28,13 @@ public final class ConstructorPDF {
 
 	private final InterpretacionRegresion interpretacion;
 	private final BufferedImage grafica;
+	private final String nombreReporte;
+	
+	public ConstructorPDF(InterpretacionRegresion interpretacion, BufferedImage grafica, String nombreReporte) {
 
-	public ConstructorPDF(InterpretacionRegresion interpretacion, BufferedImage grafica) {
-
-		this.interpretacion = interpretacion;
-		this.grafica = grafica;
+	    this.interpretacion = interpretacion;
+	    this.grafica = grafica;
+	    this.nombreReporte = nombreReporte;
 	}
 	
 	private void agregarPregunta(Document documento, PreguntaInterpretacion pregunta) {
@@ -73,8 +75,8 @@ public final class ConstructorPDF {
 
 			Font subtitulo = new Font(Font.HELVETICA, 14, Font.NORMAL);
 
-			Paragraph encabezado = new Paragraph("HYPATIA", titulo);
-
+			Paragraph encabezado = new Paragraph(nombreReporte, titulo);
+			
 			encabezado.setAlignment(Paragraph.ALIGN_CENTER);
 
 			documento.add(encabezado);
