@@ -19,7 +19,10 @@ import org.openpdf.text.Paragraph;
 import org.openpdf.text.Phrase;
 import org.openpdf.text.pdf.PdfPCell;
 import org.openpdf.text.pdf.PdfPTable;
+import org.openpdf.text.pdf.PdfPageEventHelper;
 import org.openpdf.text.pdf.PdfWriter;
+import org.openpdf.text.PageSize;
+import org.openpdf.text.pdf.PdfContentByte;
 
 import estadistica.interpretacion.InterpretacionRegresion;
 import estadistica.interpretacion.PreguntaInterpretacion;
@@ -56,14 +59,56 @@ public final class ConstructorPDF {
 	    documento.add(detalle);
 	}
 
+	
+	private static class PieDePagina extends PdfPageEventHelper {
+
+	    private final Font fuente = new Font(Font.HELVETICA, 8, Font.NORMAL);
+
+	    @Override
+	    public void onEndPage(PdfWriter writer, Document documento) {
+
+	        PdfContentByte contenido = writer.getDirectContent();
+
+	        // Separador
+	        contenido.saveState();
+
+	        contenido.setColorStroke(java.awt.Color.LIGHT_GRAY);
+	        contenido.setLineWidth(0.5f);
+
+	        float izquierda = documento.left();
+	        float derecha = documento.right();
+	        float y = documento.bottom() + 18;
+
+	        contenido.moveTo(izquierda, y);
+	        contenido.lineTo(derecha, y);
+	        contenido.stroke();
+
+	        contenido.restoreState();
+
+
+	        // Numero de pagina
+
+	        PdfPTable pie = new PdfPTable(1);
+	        pie.setTotalWidth(documento.right() - documento.left());
+
+	        PdfPCell derechaCelda = new PdfPCell(new Phrase("Página " + writer.getPageNumber(), fuente));
+	        derechaCelda.setBorder(PdfPCell.NO_BORDER);
+	        derechaCelda.setHorizontalAlignment(Element.ALIGN_RIGHT);
+	        pie.addCell(derechaCelda);
+	        pie.writeSelectedRows(0, -1, documento.left(), documento.bottom() + 8, writer.getDirectContent());
+	        
+	    }
+	}
+	
+	
 	public void construir(File archivo) {
 
-		Document documento = new Document();
+		Document documento = new Document(PageSize.A4, 50, 50, 50, 50);
 
 		try {
 
-			PdfWriter.getInstance(documento, new FileOutputStream(archivo));
-
+			PdfWriter writer = PdfWriter.getInstance(documento, new FileOutputStream(archivo));
+			writer.setPageEvent(new PieDePagina());
 			documento.open();
 			
 
@@ -72,21 +117,16 @@ public final class ConstructorPDF {
 			// =========================
 
 			Font titulo = new Font(Font.HELVETICA, 22, Font.BOLD);
-
 			Font subtitulo = new Font(Font.HELVETICA, 14, Font.NORMAL);
 
 			Paragraph encabezado = new Paragraph(nombreReporte, titulo);
-			
 			encabezado.setAlignment(Paragraph.ALIGN_CENTER);
-
 			documento.add(encabezado);
 
 			Paragraph subtituloPDF = new Paragraph("Informe de Regresión Lineal", subtitulo);
-
 			subtituloPDF.setAlignment(Paragraph.ALIGN_CENTER);
-
 			documento.add(subtituloPDF);
-
+			
 			documento.add(new Paragraph(" "));
 			
 
@@ -101,7 +141,59 @@ public final class ConstructorPDF {
 			fecha.setAlignment(Paragraph.ALIGN_RIGHT);
 			
 			documento.add(fecha);
+			
+			// =========================
+			// Firma Hypatia
+			// =========================
 
+			try {
+
+			    Font firmaFont =
+			            new Font(Font.HELVETICA, 8, Font.ITALIC);
+
+			    Image logo =
+			            Image.getInstance("src/recursos/mark 1.png");
+
+			    logo.scaleToFit(25, 25);
+
+			    PdfPTable firmaTabla = new PdfPTable(2);
+
+			    firmaTabla.setWidthPercentage(100);
+			    firmaTabla.setWidths(new float[] { 9f, 1f });
+
+			    // Texto
+
+			    PdfPCell celdaTexto =
+			            new PdfPCell(new Phrase("Con ayuda de Hypatia", firmaFont));
+
+			    celdaTexto.setBorder(PdfPCell.NO_BORDER);
+			    celdaTexto.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			    celdaTexto.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+			    // Logo
+
+			    PdfPCell celdaLogo =
+			            new PdfPCell(logo);
+
+			    celdaLogo.setBorder(PdfPCell.NO_BORDER);
+			    celdaLogo.setHorizontalAlignment(Element.ALIGN_LEFT);
+			    celdaLogo.setVerticalAlignment(Element.ALIGN_MIDDLE);
+
+			    firmaTabla.addCell(celdaTexto);
+			    firmaTabla.addCell(celdaLogo);
+
+			    firmaTabla.setSpacingAfter(8);
+
+			    documento.add(firmaTabla);
+
+			} catch (Exception e) {
+
+			    throw new RuntimeException(
+			            "No se pudo cargar el logo de Hypatia.",
+			            e
+			    );
+
+			}
 			
 			// =========================
 			// Separador
@@ -112,7 +204,7 @@ public final class ConstructorPDF {
 			Paragraph separador = new Paragraph();
 			separador.setSpacingBefore(4);
 			separador.setSpacingAfter(10);
-			separador.add(new Chunk("______________________________________________________________________________"));
+			separador.add(new Chunk("__________________________________________________________________________"));
 
 			documento.add(separador);
 
@@ -255,11 +347,19 @@ public final class ConstructorPDF {
 			// =========================
 			// Gráfica de regresión
 			// =========================
+			
+			
+			documento.newPage();
+			
+			Paragraph espacio = new Paragraph(" ");
+			espacio.setSpacingBefore(20);
+			documento.add(espacio);
+			
+			Paragraph tituloGrafica = new Paragraph("Gráfica de regresión", titulo);
 
-			Paragraph tituloGrafica = new Paragraph("Gráfica de regresión", tituloSeccion);
-
-			tituloGrafica.setSpacingBefore(10);
-			tituloGrafica.setSpacingAfter(8);
+			tituloGrafica.setAlignment(Element.ALIGN_CENTER);
+			tituloGrafica.setSpacingBefore(50);
+			tituloGrafica.setSpacingAfter(35);
 
 			documento.add(tituloGrafica);
 
