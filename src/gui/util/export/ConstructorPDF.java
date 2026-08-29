@@ -135,65 +135,43 @@ public final class ConstructorPDF {
 			// =========================
 
 			DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-			String fechaGeneracion = "Generado: " + LocalDateTime.now().format(formatoFecha);
-			Font fechaFont = new Font(Font.HELVETICA, 9, Font.NORMAL);
-			Paragraph fecha = new Paragraph(fechaGeneracion, fechaFont);
-			fecha.setAlignment(Paragraph.ALIGN_RIGHT);
-			
-			documento.add(fecha);
-			
-			// =========================
-			// Firma Hypatia
-			// =========================
+            String fechaGeneracion = "Generado: " + LocalDateTime.now().format(formatoFecha);
+            Font fechaFont = new Font(Font.HELVETICA, 9, Font.NORMAL);
+            Paragraph fecha = new Paragraph(fechaGeneracion, fechaFont);
+            fecha.setAlignment(Paragraph.ALIGN_RIGHT);
+            
+            documento.add(fecha);
+            
+            // =========================
+            // Firma 
+            // =========================
 
-			try {
+            try {
 
-			    Font firmaFont =
-			            new Font(Font.HELVETICA, 8, Font.ITALIC);
+                Font firmaFont = new Font(Font.HELVETICA, 8, Font.ITALIC);
+                Paragraph firma = new Paragraph("Con ayuda de Hypatia", firmaFont);
+                firma.setAlignment(Paragraph.ALIGN_RIGHT);
+                firma.setSpacingAfter(2);
 
-			    Image logo =
-			            Image.getInstance("src/recursos/mark 1.png");
+                documento.add(firma);
 
-			    logo.scaleToFit(25, 25);
 
-			    PdfPTable firmaTabla = new PdfPTable(2);
+                // =========================
+                // Sello 
+                // =========================
 
-			    firmaTabla.setWidthPercentage(100);
-			    firmaTabla.setWidths(new float[] { 9f, 1f });
+                Image logo = Image.getInstance("src/recursos/mark 1.png");
 
-			    // Texto
+                logo.scaleToFit(32, 32);
+                logo.setAlignment(Image.ALIGN_RIGHT);
 
-			    PdfPCell celdaTexto =
-			            new PdfPCell(new Phrase("Con ayuda de Hypatia", firmaFont));
+                documento.add(logo);
 
-			    celdaTexto.setBorder(PdfPCell.NO_BORDER);
-			    celdaTexto.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			    celdaTexto.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-			    // Logo
+            } catch (Exception e) {
 
-			    PdfPCell celdaLogo =
-			            new PdfPCell(logo);
-
-			    celdaLogo.setBorder(PdfPCell.NO_BORDER);
-			    celdaLogo.setHorizontalAlignment(Element.ALIGN_LEFT);
-			    celdaLogo.setVerticalAlignment(Element.ALIGN_MIDDLE);
-
-			    firmaTabla.addCell(celdaTexto);
-			    firmaTabla.addCell(celdaLogo);
-
-			    firmaTabla.setSpacingAfter(8);
-
-			    documento.add(firmaTabla);
-
-			} catch (Exception e) {
-
-			    throw new RuntimeException(
-			            "No se pudo cargar el logo de Hypatia.",
-			            e
-			    );
-
-			}
+                throw new RuntimeException("No se pudo cargar el logo de Hypatia.", e);
+            }
 			
 			// =========================
 			// Separador
@@ -202,7 +180,7 @@ public final class ConstructorPDF {
 			documento.add(new Chunk(" ", new Font(Font.HELVETICA, 1)));
 
 			Paragraph separador = new Paragraph();
-			separador.setSpacingBefore(4);
+			separador.setSpacingBefore(0);
 			separador.setSpacingAfter(10);
 			separador.add(new Chunk("__________________________________________________________________________"));
 
@@ -353,15 +331,16 @@ public final class ConstructorPDF {
 			
 			Paragraph espacio = new Paragraph(" ");
 			espacio.setSpacingBefore(20);
-			documento.add(espacio);
 			
 			Paragraph tituloGrafica = new Paragraph("Gráfica de regresión", titulo);
 
 			tituloGrafica.setAlignment(Element.ALIGN_CENTER);
-			tituloGrafica.setSpacingBefore(50);
-			tituloGrafica.setSpacingAfter(35);
+			tituloGrafica.setSpacingBefore(10);
+			tituloGrafica.setSpacingAfter(2);
 
 			documento.add(tituloGrafica);
+			documento.add(separador);
+			documento.add(espacio);
 
 			if (grafica != null) {
 
