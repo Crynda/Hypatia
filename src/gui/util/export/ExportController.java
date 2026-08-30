@@ -3,6 +3,7 @@ package gui.util.export;
 import java.io.File;
 
 import estadistica.regresion.RegresionLineal;
+import gui.config.GestorConfiguracion;
 import gui.status.EstadoSesion;
 import gui.status.GestorSesion;
 import javafx.scene.Node;
@@ -57,6 +58,7 @@ public class ExportController {
         ExportUtil.exportar(archivo, html);
     }
     
+   
     public static void exportarPDF(Window owner, Node grafica, int decimales) {
 
         EstadoSesion estado = GestorSesion.getEstado();
@@ -84,6 +86,13 @@ public class ExportController {
         }
 
         // =========================
+        // Cargar configuración
+        // =========================
+
+        ConfiguracionExportacion config =
+                GestorConfiguracion.cargarExportacion();
+
+        // =========================
         // Seleccionar ubicación
         // =========================
 
@@ -105,7 +114,7 @@ public class ExportController {
         // Generar PDF
         // =========================
 
-        PDFExport.exportar(archivo, estado, grafica, decimales, nombreReporte);
+        PDFExport.exportar(archivo, estado, grafica, decimales, nombreReporte, config);
     }
     
     public static void exportarImagen(Window owner, Node grafica) {

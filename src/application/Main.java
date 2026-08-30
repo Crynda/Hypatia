@@ -21,8 +21,8 @@ public class Main extends Application {
             Image icon = new Image(getClass().getResourceAsStream("/recursos/Icon.png"));
             primaryStage.getIcons().add(icon);
 
-            //Parent root = FXMLLoader.load(getClass().getResource("/gui/escenas/Menu.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/ventanas/OpcionesExportacion.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/escenas/Menu.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/gui/ventanas/OpcionesExportacion.fxml"));
             
 
             Scene scene = new Scene(root);

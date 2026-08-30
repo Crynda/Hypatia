@@ -3,6 +3,7 @@ package gui.controladores;
 import gui.config.GestorConfiguracion;
 import gui.util.SwitchToggle;
 import gui.util.export.ConfiguracionExportacion;
+import gui.util.export.ExportController;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -104,9 +105,7 @@ public class ExportMenuController {
 
     @FXML
     private void cerrar() {
-
         Stage stage = (Stage) root.getScene().getWindow();
-
         stage.close();
     }
     
@@ -114,6 +113,8 @@ public class ExportMenuController {
     private void aceptar() {
     	
     	GestorConfiguracion.guardarExportacion(config); 
+    	ExportController.exportarPDF(ventana, Grafica, limiteDecimales); //Modificar para pasar los argumentos desde la ventana anterior, y modificar
+    	// exportar pdf para que no abra las ventanas y mejor tome todos los datos desde la clase del menu de exportaciones y los datos
     	Stage stage = (Stage) root.getScene().getWindow(); 
     	stage.close(); 
     	

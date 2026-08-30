@@ -184,8 +184,6 @@ public class TableController {
 	@FXML
 	private MenuItem exportarPDF;
 	@FXML
-	private MenuItem exportarExcel;
-	@FXML
 	private MenuItem exportarHTML;
 	@FXML
 	private MenuItem exportarJSON;
@@ -215,7 +213,6 @@ public class TableController {
 
 	    //Exportaciones
 	    exportarPDF.setDisable(!habilitar);
-	    exportarExcel.setDisable(!habilitar);
 	    exportarHTML.setDisable(!habilitar);
 	    exportarJSON.setDisable(!habilitar);
 	    exportarImagen.setDisable(!habilitar);
@@ -797,6 +794,39 @@ public class TableController {
 	    separator2.setLayoutY(y.getMinY() + 62);
 	}
 	
+	@FXML
+	private void OpcionesExportacion() {
+
+	    try {
+
+	    	Image icon = new Image (getClass().getResourceAsStream("/recursos/Icon.png"));
+			
+	    	
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ventanas/OpcionesExportacion.fxml"));
+
+	        Parent root = loader.load();
+	      
+	        ExportMenuController controller = loader.getController();	        
+	        
+	        Stage stage = new Stage();
+	        stage.setTitle("Exportar PDF");
+	        stage.getIcons().add(icon);
+
+	        Scene scene = new Scene(root);
+
+	        GestorTemas.preparar(scene);
+
+	        stage.setScene(scene);
+	        stage.initModality(Modality.APPLICATION_MODAL);
+	        stage.setResizable(false);
+	        stage.showAndWait();
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace();
+	    }
+	}
+	
 	//MenuBar
 	
 	@FXML
@@ -822,6 +852,7 @@ public class TableController {
 	
 	@FXML
 	private void exportarPDF() {
-		ExportController.exportarPDF(ventana, Grafica, limiteDecimales);
+		//ExportController.exportarPDF(ventana, Grafica, limiteDecimales);
+		OpcionesExportacion();
 	}
 }

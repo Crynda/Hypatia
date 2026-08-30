@@ -43,7 +43,6 @@
                     <items>
                       <MenuItem fx:id="exportarPDF" mnemonicParsing="false" onAction="#exportarPDF" text="PDF" />
                         <MenuItem fx:id="exportarImagen" mnemonicParsing="false" onAction="#exportarImagen" text="Imagen (Grafica)" />
-                        <MenuItem fx:id="exportarExcel" mnemonicParsing="false" text="Excel (XLSX)" />
                         <MenuItem fx:id="exportarJSON" mnemonicParsing="false" onAction="#exportarJSON" text="JSON" />
                         <MenuItem fx:id="exportarHTML" mnemonicParsing="false" onAction="#exportarHTML" text="HTML" />
                     </items>

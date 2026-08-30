@@ -15,17 +15,17 @@ public final class PDFExport {
     }
 
     
-    
-    public static void exportar(File archivo, EstadoSesion estado, Node grafica, int decimales, String nombreReporte) {
+    public static void exportar(File archivo, EstadoSesion estado, Node grafica, int decimales, String nombreReporte, ConfiguracionExportacion config) {
 
         // Interpretación
-        InterpretacionRegresion interpretacion = GeneradorInterpretacion.generar(estado, decimales);
+        InterpretacionRegresion interpretacion =  GeneradorInterpretacion.generar(estado, decimales);
 
         // Gráfica
         BufferedImage imagen = ImageExport.generar(grafica);
 
         // Construcción del PDF
-        ConstructorPDF constructor = new ConstructorPDF(interpretacion, imagen, nombreReporte);
+        ConstructorPDF constructor = new ConstructorPDF(interpretacion, imagen, nombreReporte, config.isFecha(),
+                        config.isInformacionComplementaria(), config.isCreditos());
 
         constructor.construir(archivo);
     }
