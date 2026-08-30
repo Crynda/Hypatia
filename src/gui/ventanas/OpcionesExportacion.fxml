@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controladores.ExportMenuController">
+   <children>
+
+<Label layoutX="102.0" layoutY="112.0" text="Titulo del reporte">
+    <font>
+        <Font size="16.0" />
+    </font>
+</Label>      
+
+      <Label layoutX="144.0" layoutY="37.0" text="Opciones de Exportación">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="102.0" layoutY="156.0" text="Fecha de generación">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="102.0" layoutY="204.0" text="Información complementaria">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Pane fx:id="switchPaneIC" layoutX="399.0" layoutY="197.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+         <children>
+            <Circle fx:id="switchIC" centerX="18" centerY="18" fill="WHITE" radius="14" />
+         </children>
+      </Pane>
+      <Label layoutX="102.0" layoutY="253.0" text="Créditos">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Pane fx:id="switchPaneCreditos" layoutX="399.0" layoutY="246.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+         <children>
+            <Circle fx:id="switchCreditos" centerX="18" centerY="18" fill="WHITE" radius="14" />
+         </children>
+      </Pane>
+      <Button fx:id="Aceptar" layoutX="319.0" layoutY="317.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="Cancelar" layoutX="186.0" layoutY="317.0" mnemonicParsing="false" onAction="#cerrar" text="Cancelar">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Pane fx:id="pnlNotificacion" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #bfdff1;" visible="false">
+         <children>
+            <Rectangle fx:id="rectTiempo" fill="DODGERBLUE" height="4.0" layoutY="36.0" stroke="BLACK" strokeLineCap="BUTT" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+            <Label fx:id="lblMensaje" layoutX="14.0" layoutY="9.0" text="Cambios guardados correctamente" textFill="#003eff">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="switchPaneFecha" layoutX="399.0" layoutY="149.0" prefHeight="36" prefWidth="80" style="-fx-background-color: #2596be; -fx-background-radius: 40;">
+         <children>
+            <Circle fx:id="switchFecha" centerX="18" centerY="18" fill="WHITE" radius="14" />
+         </children>
+      </Pane>
+      <TextField fx:id="titulo" layoutX="294.0" layoutY="110.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      
+   </children>
+</AnchorPane>

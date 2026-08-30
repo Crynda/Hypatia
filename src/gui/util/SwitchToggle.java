@@ -37,12 +37,7 @@ public class SwitchToggle {
 
     }
 
-    public static void configurarSwitch(
-            Pane pane,
-            Circle circle,
-            boolean estadoInicial,
-            boolean usarColor,
-            Consumer<Boolean> accion) {
+    public static void configurarSwitch(Pane pane, Circle circle, boolean estadoInicial, boolean usarColor, Consumer<Boolean> accion) {
 
         establecerEstadoSwitch(circle, estadoInicial);
 
