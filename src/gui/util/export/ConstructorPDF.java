@@ -33,11 +33,20 @@ public final class ConstructorPDF {
 	private final BufferedImage grafica;
 	private final String nombreReporte;
 	
-	public ConstructorPDF(InterpretacionRegresion interpretacion, BufferedImage grafica, String nombreReporte) {
+	private final boolean fecha;
+	private final boolean ic;
+	private final boolean creditos;
+	
+	public ConstructorPDF(InterpretacionRegresion interpretacion, BufferedImage grafica, String nombreReporte,
+			 boolean fecha, boolean ic, boolean creditos) {
 
 	    this.interpretacion = interpretacion;
 	    this.grafica = grafica;
 	    this.nombreReporte = nombreReporte;
+	    
+	    this.fecha = fecha;
+	    this.ic = ic;
+	    this.creditos = creditos;
 	}
 	
 	private void agregarPregunta(Document documento, PreguntaInterpretacion pregunta) {
@@ -133,7 +142,9 @@ public final class ConstructorPDF {
 			// =========================
 			// Fecha de generación
 			// =========================
-
+			
+			if (fecha) {
+			
 			DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             String fechaGeneracion = "Generado: " + LocalDateTime.now().format(formatoFecha);
             Font fechaFont = new Font(Font.HELVETICA, 9, Font.NORMAL);
@@ -142,10 +153,14 @@ public final class ConstructorPDF {
             
             documento.add(fecha);
             
+			}
+            
             // =========================
             // Firma 
             // =========================
 
+			if (creditos) {
+			
             try {
 
                 Font firmaFont = new Font(Font.HELVETICA, 8, Font.ITALIC);
@@ -172,6 +187,8 @@ public final class ConstructorPDF {
 
                 throw new RuntimeException("No se pudo cargar el logo de Hypatia.", e);
             }
+            
+			}
 			
 			// =========================
 			// Separador
@@ -247,6 +264,60 @@ public final class ConstructorPDF {
 			documento.add(tablaResumen);
 
 			documento.add(new Paragraph(" "));
+			
+			////////////////////////////////////////////////////////////
+			
+			// =========================
+			// Explicación de resultados
+			// =========================
+			
+			if (ic) {
+
+			Paragraph tituloExplicacion = new Paragraph("¿Qué significa cada resultado?", tituloSeccion);
+
+			tituloExplicacion.setSpacingBefore(6);
+			tituloExplicacion.setSpacingAfter(8);
+
+			documento.add(tituloExplicacion);
+
+			Font explicacionFont =
+			        new Font(Font.HELVETICA, 9, Font.NORMAL);
+
+			documento.add(new Paragraph(
+			        "Calidad: indica qué tan adecuado es el modelo para describir el comportamiento observado.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(
+			        "R²: representa el porcentaje de variabilidad de los datos que puede explicar el modelo.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(
+			        "Error estándar relativo: muestra el tamaño típico del error de predicción en relación con el promedio de la variable dependiente.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(
+			        "Fuerza de la correlación: indica qué tan estrecha es la relación lineal entre las variables.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(
+			        "Dirección: indica si la variable Y tiende a aumentar o disminuir cuando X aumenta.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(
+			        "Semáforo: proporciona una referencia visual sobre la calidad general del ajuste del modelo.",
+			        explicacionFont
+			));
+
+			documento.add(new Paragraph(" "));
+			
+			}
+			
+			////////////////////////////////////////////////
 
 			
 			// =========================
@@ -289,6 +360,10 @@ public final class ConstructorPDF {
 			// =========================
 			// Preguntas de interpretación
 			// =========================
+			
+			if (ic) {
+				documento.newPage();
+			}
 
 			Paragraph tituloPreguntas = new Paragraph("Preguntas de interpretación", tituloSeccion);
 
