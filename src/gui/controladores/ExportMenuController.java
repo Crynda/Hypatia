@@ -5,15 +5,22 @@ import gui.util.SwitchToggle;
 import gui.util.export.ConfiguracionExportacion;
 import gui.util.export.ExportController;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class ExportMenuController {
 
     @FXML
     private AnchorPane root;
+    
+    @FXML
+    private TextField titulo;
 
     @FXML
     private Pane switchPaneFecha;
@@ -35,6 +42,17 @@ public class ExportMenuController {
 
 
     private ConfiguracionExportacion config;
+    
+    private Window ventana;
+    private Node grafica;
+    private int limiteDecimales;
+    
+    public void configurarExportacion(Window ventana, Node grafica, int limiteDecimales) {
+
+        this.ventana = ventana;
+        this.grafica = grafica;
+        this.limiteDecimales = limiteDecimales;
+    }
 
 
     // =========================
@@ -109,16 +127,35 @@ public class ExportMenuController {
         stage.close();
     }
     
-    @FXML 
+
+    @FXML
     private void aceptar() {
-    	
-    	GestorConfiguracion.guardarExportacion(config); 
-    	ExportController.exportarPDF(ventana, Grafica, limiteDecimales); //Modificar para pasar los argumentos desde la ventana anterior, y modificar
-    	// exportar pdf para que no abra las ventanas y mejor tome todos los datos desde la clase del menu de exportaciones y los datos
-    	Stage stage = (Stage) root.getScene().getWindow(); 
-    	stage.close(); 
-    	
-    	}
+
+        // Guardar configuración actual
+        GestorConfiguracion.guardarExportacion(config);
+
+        //Obtener nombre
+        String nombreReporte = titulo.getText().trim();
+
+        if (nombreReporte.isEmpty()) {
+
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Título requerido");
+            alerta.setHeaderText("Falta el título del reporte");
+            alerta.setContentText("Introduce un título para poder exportar el PDF.");
+
+            alerta.showAndWait();
+
+            return;
+        }
+        
+        // Continuar con la exportación
+        ExportController.exportarPDF(ventana, grafica, limiteDecimales, nombreReporte, config);
+
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.close();
+    }
+
     
 }
 

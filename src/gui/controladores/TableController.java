@@ -685,6 +685,44 @@ public class TableController {
 	}
 	
 	
+	@FXML
+	private void OpcionesExportacion() {
+
+	    try {
+
+	    	Image icon = new Image (getClass().getResourceAsStream("/recursos/Icon.png"));
+			
+	    	
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ventanas/OpcionesExportacion.fxml"));
+
+	        Parent root = loader.load();
+	      
+	        ExportMenuController controller = loader.getController();	
+	        
+	        // =========================
+	        // INYECTAR DATOS
+	        // =========================
+
+	        controller.configurarExportacion(ventana, Grafica, limiteDecimales);
+	        
+	        Stage stage = new Stage();
+	        stage.setTitle("Exportar PDF");
+	        stage.getIcons().add(icon);
+
+	        Scene scene = new Scene(root);
+
+	        GestorTemas.preparar(scene);
+
+	        stage.setScene(scene);
+	        stage.initModality(Modality.APPLICATION_MODAL);
+	        stage.setResizable(false);
+	        stage.showAndWait();
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace();
+	    }
+	}
 	
 	private void actualizarFormato() {
 
@@ -794,38 +832,7 @@ public class TableController {
 	    separator2.setLayoutY(y.getMinY() + 62);
 	}
 	
-	@FXML
-	private void OpcionesExportacion() {
-
-	    try {
-
-	    	Image icon = new Image (getClass().getResourceAsStream("/recursos/Icon.png"));
-			
-	    	
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ventanas/OpcionesExportacion.fxml"));
-
-	        Parent root = loader.load();
-	      
-	        ExportMenuController controller = loader.getController();	        
-	        
-	        Stage stage = new Stage();
-	        stage.setTitle("Exportar PDF");
-	        stage.getIcons().add(icon);
-
-	        Scene scene = new Scene(root);
-
-	        GestorTemas.preparar(scene);
-
-	        stage.setScene(scene);
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        stage.setResizable(false);
-	        stage.showAndWait();
-
-	    } catch (Exception e) {
-
-	        e.printStackTrace();
-	    }
-	}
+	
 	
 	//MenuBar
 	

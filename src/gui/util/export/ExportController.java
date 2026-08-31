@@ -58,39 +58,9 @@ public class ExportController {
         ExportUtil.exportar(archivo, html);
     }
     
-   
-    public static void exportarPDF(Window owner, Node grafica, int decimales) {
+    public static void exportarPDF(Window owner, Node grafica, int decimales, String nombreReporte, ConfiguracionExportacion config) {
 
         EstadoSesion estado = GestorSesion.getEstado();
-
-        // =========================
-        // Nombre del reporte
-        // =========================
-
-        TextInputDialog dialogo = new TextInputDialog("Hypatia");
-
-        dialogo.setTitle("Nombre del reporte");
-        dialogo.setHeaderText("Nombre del reporte");
-        dialogo.setContentText("Introduce el nombre:");
-
-        var resultado = dialogo.showAndWait();
-
-        if (resultado.isEmpty()) {
-            return;
-        }
-
-        String nombreReporte = resultado.get().trim();
-
-        if (nombreReporte.isEmpty()) {
-            return;
-        }
-
-        // =========================
-        // Cargar configuración
-        // =========================
-
-        ConfiguracionExportacion config =
-                GestorConfiguracion.cargarExportacion();
 
         // =========================
         // Seleccionar ubicación
