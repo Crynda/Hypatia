@@ -2,14 +2,11 @@ package gui.util.export;
 
 import estadistica.regresion.RegresionLineal;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class JSONExport {
 
-	static String construirJSON(RegresionLineal r, int decimales) {
+	static String construirJSON(RegresionLineal r, int decimales, String nombre) {
 		
 		double[] x = r.getX();
 		double[] y = r.getY();
@@ -20,6 +17,10 @@ public class JSONExport {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{\n");
+
+        sb.append("  \"identificacion\": \"")
+          .append(nombre)
+          .append("\",\n");
 
         sb.append("  \"generado\": \"")
           .append(LocalDateTime.now())

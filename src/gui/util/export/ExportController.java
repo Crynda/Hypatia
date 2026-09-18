@@ -16,26 +16,35 @@ public class ExportController {
 
     
 
-    public static void exportarJSON(Window owner, int decimales) {
+	//Modificar
+	public static void exportarJSON(Window owner, int decimales) {
 
-        EstadoSesion estado = GestorSesion.getEstado();
-        FileChooser chooser = ExportUtil.crearFileChooser("Guardar JSON", "hypatia-regresion", "JSON (*.json)", "json");
-        File archivo = chooser.showSaveDialog(owner);
+	    EstadoSesion estado = GestorSesion.getEstado();
+	    FileChooser chooser = ExportUtil.crearFileChooser("Guardar JSON", "hypatia-regresion", "JSON (*.json)", "json");
+	    File archivo = chooser.showSaveDialog(owner);
 
-        if (archivo == null) {
-            return;
-        }
+	    if (archivo == null) {
+	        return;
+	    }
 
-        archivo = ExportUtil.asegurarExtension(archivo, "json");
+	    archivo = ExportUtil.asegurarExtension(archivo, "json");
 
-        if (!ExportUtil.confirmarSobrescritura(archivo)) {
-            return;
-        }
+	    if (!ExportUtil.confirmarSobrescritura(archivo)) {
+	        return;
+	    }
 
-        String json = JSONExport.construirJSON(estado.getRegresion(), decimales);
+	    String nombre = archivo.getName();
 
-        ExportUtil.exportar(archivo, json);
-    }
+	    int punto = nombre.lastIndexOf('.');
+
+	    if (punto > 0) {
+	        nombre = nombre.substring(0, punto);
+	    }
+
+	    String json = JSONExport.construirJSON(estado.getRegresion(), decimales, nombre);
+
+	    ExportUtil.exportar(archivo, json);
+	}
     
     public static void exportarHTML(Window owner, int decimales) {
 
@@ -76,9 +85,7 @@ public class ExportController {
 
         archivo = ExportUtil.asegurarExtension(archivo, "pdf");
 
-        if (!ExportUtil.confirmarSobrescritura(archivo)) {
-            return;
-        }
+        
 
         // =========================
         // Generar PDF

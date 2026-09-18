@@ -8,6 +8,8 @@ public class EstadoSesion {
     private double[] x;
     private double[] y;
     
+    private String nombre;
+    
     private String nombreX = "X";
     private String nombreY = "Y";
 
@@ -18,6 +20,13 @@ public class EstadoSesion {
     private boolean datosCargados;
     private boolean regresionCalculada;
     
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
 	public double[] getX() {
 		return x;
