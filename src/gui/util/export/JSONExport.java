@@ -4,9 +4,15 @@ import estadistica.regresion.RegresionLineal;
 
 import java.time.LocalDateTime;
 
-public class JSONExport {
+import com.google.gson.Gson;
 
-	static String construirJSON(RegresionLineal r, int decimales, String nombre) {
+public class JSONExport {
+	
+	private static String stringToJson(String valor) {
+	    return new Gson().toJson(valor);
+	}
+
+	static String construirJSON(RegresionLineal r, int decimales, String identificacion) {
 		
 		double[] x = r.getX();
 		double[] y = r.getY();
@@ -18,9 +24,25 @@ public class JSONExport {
 
         sb.append("{\n");
 
-        sb.append("  \"identificacion\": \"")
-          .append(nombre)
-          .append("\",\n");
+        //Blindado de archivo
+        
+        /*	Antes
+         * 	.append("\"")
+			.append(identificacion)
+			.append("\"")
+			
+			Despues:
+			sb.append("  \"identificacion\": ")
+  			.append(stringToJson(identificacion))
+  			.append(",\n");
+  			
+  			Ahora: 
+         */
+        
+        sb.append("  \"identificacion\": ")
+        .append(new Gson().toJson(identificacion))
+        .append(",\n");
+
 
         sb.append("  \"generado\": \"")
           .append(LocalDateTime.now())
